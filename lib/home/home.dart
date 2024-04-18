@@ -1,3 +1,4 @@
+import 'package:appjobsflutter/home/cadastros/add-enterprise.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -8,6 +9,15 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+
+    goToEnterpriseAdd(){
+       Navigator.pop(context);
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => EnterpriseAdd()));
+    }
+
+
+
     return Scaffold(
 
       appBar: AppBar(
@@ -23,6 +33,7 @@ class _HomePageState extends State<HomePage> {
             ListTile(
               leading: Icon(Icons.location_city, color: Colors.blue,),
               title: Text("Enterprises", style: TextStyle(color: Colors.blue),),
+              onTap: () => goToEnterpriseAdd(),
             ),
 
             ListTile(

@@ -57,18 +57,18 @@ class _IntroAppJobsState extends State<IntroAppJobs> {
                   child: Text("appjobs", style: TextStyle(color: Colors.white, fontSize: 28)),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 1,
                 ),
-                // Expanded(
-                //     child: Center(
-                //   child: Container(
-                //     height: 2,
-                //     width: 150,
-                //     child: LinearProgressIndicator(
-                //       color: Colors.white,
-                //     ),
-                //   ),
-                // )),
+                Expanded(
+                    child: Center(
+                  child: Container(
+                    height: 2,
+                    width: 150,
+                    child: LinearProgressIndicator(
+                      color: Colors.white,
+                    ),
+                  ),
+                )),
               ],
             ),
           ),

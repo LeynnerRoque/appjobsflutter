@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:appjobsflutter/components/button-component.dart';
 import 'package:appjobsflutter/components/field-component.dart';
+import 'package:appjobsflutter/models/enterprise.dart';
+import 'package:appjobsflutter/service/enterprise-service.dart';
 import 'package:flutter/material.dart';
 
 class EnterpriseAdd extends StatefulWidget {
@@ -14,7 +18,19 @@ class _EnterpriseAddState extends State<EnterpriseAdd> {
     final foundationName = TextEditingController();
     final email = TextEditingController();
     final phone = TextEditingController();
-    
+
+    addEnterprise() async{
+      try{
+        Enterprises enterprises = new Enterprises(
+          foundationName: foundationName.text, 
+          email: email.text, 
+          phoneNumber: phone.text);
+          print(enterprises.toJson());
+          enterpriseService.addEnterprise(enterprises.toJson());
+      }on HttpException catch (e){
+        print(e.uri);
+      }
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -35,7 +51,7 @@ class _EnterpriseAddState extends State<EnterpriseAdd> {
               controller: foundationName, 
               labelText: "Foundation Name", 
               icon: Icon(Icons.location_city), 
-              obscureText: true, 
+              obscureText: false, 
               tipoEntrada: TextInputType.text),
 
               SizedBox(
@@ -46,7 +62,7 @@ class _EnterpriseAddState extends State<EnterpriseAdd> {
               controller: email, 
               labelText: "Foundation Mail", 
               icon: Icon(Icons.mail_outline), 
-              obscureText: true, 
+              obscureText: false, 
               tipoEntrada: TextInputType.text),
             
             SizedBox(
@@ -57,7 +73,7 @@ class _EnterpriseAddState extends State<EnterpriseAdd> {
               controller: phone, 
               labelText: "Foundation Name", 
               icon: Icon(Icons.phone), 
-              obscureText: true, 
+              obscureText: false, 
               tipoEntrada: TextInputType.text),
 
               SizedBox(
@@ -67,7 +83,9 @@ class _EnterpriseAddState extends State<EnterpriseAdd> {
               ButtonIconComponent(
                 texto: "salvar", 
                 icon: Icon(Icons.check,color: Colors.white,), 
-                onPressed: (){})
+                onPressed: (){
+                  addEnterprise();
+                })
 
                 ],
               ),

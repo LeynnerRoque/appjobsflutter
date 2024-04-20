@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:appjobsflutter/components/button-component.dart';
+import 'package:appjobsflutter/components/dialog-component.dart';
 import 'package:appjobsflutter/components/field-component.dart';
 import 'package:appjobsflutter/models/enterprise.dart';
 import 'package:appjobsflutter/service/enterprise-service.dart';
@@ -19,26 +20,50 @@ class _EnterpriseAddState extends State<EnterpriseAdd> {
     final email = TextEditingController();
     final phone = TextEditingController();
 
+    //todo
+    //Validations
+
+    clean(){
+      foundationName.clear();
+      email.clear();
+      phone.clear();
+    }
+
+  openCallsDialogSucess(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return SucessInfoAlert();
+        });
+  }
+
     addEnterprise() async{
       try{
         Enterprises enterprises = new Enterprises(
           foundationName: foundationName.text, 
           email: email.text, 
           phoneNumber: phone.text);
-          print(enterprises.toJson());
           enterpriseService.addEnterprise(enterprises.toJson());
+          openCallsDialogSucess(context);
+          clean();
       }on HttpException catch (e){
         print(e.uri);
+        //dialog erro
       }
     }
 
+  
+
     return Scaffold(
       appBar: AppBar(
-        title: Text("Enterprise", style: TextStyle(color: Colors.white),),
+        title: Text("Add Enterprise", style: TextStyle(color: Colors.white),),
         backgroundColor: Colors.blue,
         iconTheme: IconThemeData(color: Colors.white),
       ),
-      body: Center(
+      body:SingleChildScrollView(
+          padding: EdgeInsets.all(10),
+          child: Column(
+            children: <Widget>[ Center(
         child: 
             Container(
               padding: EdgeInsets.all(10),
@@ -71,7 +96,7 @@ class _EnterpriseAddState extends State<EnterpriseAdd> {
 
             FieldComponent(
               controller: phone, 
-              labelText: "Foundation Name", 
+              labelText: "Foundation Phone", 
               icon: Icon(Icons.phone), 
               obscureText: false, 
               tipoEntrada: TextInputType.text),
@@ -85,12 +110,23 @@ class _EnterpriseAddState extends State<EnterpriseAdd> {
                 icon: Icon(Icons.check,color: Colors.white,), 
                 onPressed: (){
                   addEnterprise();
+                }),
+
+                SizedBox(
+                  height: 10,
+                ),
+
+                ButtonIconComponent(
+                texto: "limpar", 
+                icon: Icon(Icons.cleaning_services,color: Colors.white,), 
+                onPressed: (){
+                  clean();
                 })
 
                 ],
               ),
             ),
       ),
-    );
+            ])));
   }
 }

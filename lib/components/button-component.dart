@@ -16,9 +16,8 @@ ButtonIconComponent({
 
 
 final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
-  onPrimary: Colors.blue,
-  primary: Colors.blue[600],
   padding: EdgeInsets.all(16),
+  backgroundColor: Colors.blue,
   shape: RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(30)),
   );

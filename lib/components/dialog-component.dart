@@ -1,6 +1,22 @@
+import 'package:appjobsflutter/components/text-button-component.dart';
 import 'package:flutter/material.dart';
 
 class SucessInfoAlert extends StatelessWidget {
+
+  final String labelText;
+  final Function()? onPressed;
+
+  SucessInfoAlert({
+    Key? key,
+    required this.labelText,
+    required this.onPressed
+  }): super(key: key);
+
+closeDialog(BuildContext context){
+  Navigator.of(context).pop();
+}
+
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -28,7 +44,19 @@ class SucessInfoAlert extends StatelessWidget {
               ],
             ),
           ),
-        ));
+        ),
+        actions: <Widget>[
+          TextButtonComponent(
+            labelText: "Fechar", 
+            onPressed: (){
+              closeDialog(context);
+            }),
+
+          TextButtonComponent(
+            labelText: labelText, 
+            onPressed: onPressed),
+        ],
+        );
   }
 }
 //

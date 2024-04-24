@@ -14,6 +14,15 @@ class EnterprisesService{
     );
   }
 
+    Future<http.Response> updateEnterprise(data){
+    return http.put(Uri.parse(url+'api/up'),
+      headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+      body: jsonEncode(data)
+    );
+  }
+
   Future<http.Response> listEnterprises(){
     return http.get(Uri.parse(url+'api/all'));
   }

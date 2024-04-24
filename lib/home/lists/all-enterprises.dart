@@ -1,4 +1,5 @@
 import 'package:appjobsflutter/home/cadastros/add-enterprise.dart';
+import 'package:appjobsflutter/home/edits/edit-enterprise.dart';
 import 'package:appjobsflutter/models/enterprise.dart';
 import 'package:appjobsflutter/service/enterprise-service.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,17 @@ class _AllEntreprisesState extends State<AllEntreprises> {
   goToAdd() {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => EnterpriseAdd()));
+  }
+
+  gotoEdit(item){
+    print(item.id);
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => EditEnterprise(
+          id: item.id,
+          foundationName: item.foundationName,
+          email: item.email,
+          phoneNumber: item.phoneNumber,
+        )));
   }
 
   openDialogDetails(item) {
@@ -38,7 +50,9 @@ class _AllEntreprisesState extends State<AllEntreprises> {
                    Row(
                     children: [
                       IconButton(onPressed: (){}, icon: Icon(Icons.favorite_outline)),
-                      IconButton(onPressed: (){}, icon: Icon(Icons.edit)),
+                      IconButton(onPressed: (){
+                        gotoEdit(item);
+                      }, icon: Icon(Icons.edit)),
                       IconButton(onPressed: (){}, icon: Icon(Icons.delete)),
                       IconButton(onPressed: (){}, icon: Icon(Icons.check)),
                       IconButton(onPressed: (){}, icon: Icon(Icons.work)),

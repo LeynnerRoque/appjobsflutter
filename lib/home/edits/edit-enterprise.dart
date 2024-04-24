@@ -8,12 +8,26 @@ import 'package:appjobsflutter/models/enterprise.dart';
 import 'package:appjobsflutter/service/enterprise-service.dart';
 import 'package:flutter/material.dart';
 
-class EnterpriseAdd extends StatefulWidget {
+class EditEnterprise extends StatefulWidget {
+
+final int id;
+final String foundationName;
+final String email;
+final String phoneNumber;
+
+EditEnterprise({
+  Key? key,
+  required this.id,
+  required this.foundationName,
+  required this.email,
+  required this.phoneNumber,
+}) : super(key: key);
+
   @override
-  _EnterpriseAddState createState() => _EnterpriseAddState();
+  _EditEnterpriseState createState() => _EditEnterpriseState();
 }
 
-class _EnterpriseAddState extends State<EnterpriseAdd> {
+class _EditEnterpriseState extends State<EditEnterprise> {
   final foundationName = TextEditingController();
   final email = TextEditingController();
   final phone = TextEditingController();
@@ -32,7 +46,7 @@ class _EnterpriseAddState extends State<EnterpriseAdd> {
         context, MaterialPageRoute(builder: (context) => AllEntreprises()));
   }
 
-  openCallsDialogSucess(BuildContext context) {
+    openCallsDialogSucess(BuildContext context) {
     return showDialog(
         context: context,
         builder: (context) {
@@ -45,14 +59,14 @@ class _EnterpriseAddState extends State<EnterpriseAdd> {
         });
   }
 
-  addEnterprise() async {
+   addEnterprise() async {
     try {
       Enterprises enterprises = new Enterprises(
-          id: 0,
+          id: widget.id,
           foundationName: foundationName.text,
           email: email.text,
           phoneNumber: phone.text);
-      enterpriseService.addEnterprise(enterprises.toJson());
+      enterpriseService.updateEnterprise(enterprises.toJson());
       openCallsDialogSucess(context);
       clean();
     } on HttpException catch (e) {
@@ -61,10 +75,19 @@ class _EnterpriseAddState extends State<EnterpriseAdd> {
     }
   }
 
+@override
+  void initState() {
+    foundationName.text = widget.foundationName;
+    email.text = widget.email;
+    phone.text = widget.phoneNumber;
+    super.initState();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
+      appBar: AppBar(
           title: Text(
             "Add Enterprise",
             style: TextStyle(color: Colors.white),
@@ -72,7 +95,7 @@ class _EnterpriseAddState extends State<EnterpriseAdd> {
           backgroundColor: Colors.blue,
           iconTheme: IconThemeData(color: Colors.white),
         ),
-        body: SingleChildScrollView(
+        body:  SingleChildScrollView(
             padding: EdgeInsets.all(10),
             child: Column(children: <Widget>[
               Center(
@@ -135,6 +158,7 @@ class _EnterpriseAddState extends State<EnterpriseAdd> {
                   ),
                 ),
               ),
-            ])));
+            ])),
+    );
   }
 }

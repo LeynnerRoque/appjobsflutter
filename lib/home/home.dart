@@ -1,5 +1,5 @@
 import 'package:appjobsflutter/home/cadastros/add-enterprise.dart';
-import 'package:appjobsflutter/home/cadastros/all-enterprises.dart';
+import 'package:appjobsflutter/home/lists/all-enterprises.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {

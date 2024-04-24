@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 class Enterprises{
 final String foundationName;
 final String email;
@@ -20,7 +22,7 @@ foundationName = json['foundationName'],
 email = json['email'],
 phoneNumber = json['phoneNumber'];
 
-static Enterprises goToJson(Map<String, dynamic> json) => Enterprises(
+static Enterprises goToJson(json) => Enterprises(
   foundationName: json['foundationName'], 
   email: json['email'], 
   phoneNumber: json['phoneNumber']);

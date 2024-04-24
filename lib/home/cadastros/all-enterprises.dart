@@ -10,6 +10,46 @@ class AllEntreprises extends StatefulWidget {
 }
 
 class _AllEntreprisesState extends State<AllEntreprises> {
+  goToAdd() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => EnterpriseAdd()));
+  }
+
+  openDialogDetails(item) {
+    return showDialog(
+        context: context,
+        builder: (builder) {
+          return AlertDialog(
+            backgroundColor: Colors.white,
+            title: Center(child: Text('Details',style: TextStyle(color: Colors.blue,),)),
+            content: Container(
+                height: 200,
+                child: Center(
+              child: Column(
+                children: [
+                  CircleAvatar(
+                    child: Text(item.foundationName.toString().characters.first),
+                    radius: 50,
+                  ),
+                  Text(item.foundationName),
+                  Text(item.email+"/"+item.phoneNumber, 
+                  style: TextStyle(color: Colors.grey[400], fontSize: 12),),
+                  SizedBox(height: 4,),
+                   Row(
+                    children: [
+                      IconButton(onPressed: (){}, icon: Icon(Icons.favorite_outline)),
+                      IconButton(onPressed: (){}, icon: Icon(Icons.edit)),
+                      IconButton(onPressed: (){}, icon: Icon(Icons.delete)),
+                      IconButton(onPressed: (){}, icon: Icon(Icons.check)),
+                      IconButton(onPressed: (){}, icon: Icon(Icons.work)),
+                    ],
+                  ),
+                  
+                  ]),
+            )),
+          );
+        });
+  }
 
   Future<List<Enterprises>> getAll() async {
     var response = await enterpriseService.listEnterprises();
@@ -22,11 +62,6 @@ class _AllEntreprisesState extends State<AllEntreprises> {
     }
   }
 
-  goToAdd() {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => EnterpriseAdd()));
-  }
-
   FutureBuilder<List<Enterprises>> viewAll() {
     return FutureBuilder(
         future: getAll(),
@@ -34,20 +69,24 @@ class _AllEntreprisesState extends State<AllEntreprises> {
           if (snapshot.hasData) {
             List<Enterprises>? views = snapshot.data;
             return Column(
-              children: views!.map((e) => new Column(
-                children: <Widget>[
-                  new ListTile(
-                    leading: CircleAvatar(
-                      child: Text(e.foundationName.characters.first),
-                      radius: 30,
-                    ),
-                    title: Text(e.foundationName),
-                    subtitle: Text(e.email+"/"+e.phoneNumber),
-                    )
-                ],
-              )).toList(),
+              children: views!
+                  .map((e) => new Column(
+                        children: <Widget>[
+                          new ListTile(
+                            leading: CircleAvatar(
+                              child: Text(e.foundationName.characters.first),
+                              radius: 30,
+                            ),
+                            title: Text(e.foundationName),
+                            subtitle: Text(e.email + "/" + e.phoneNumber),
+                            onTap: () {
+                              openDialogDetails(e);
+                            },
+                          )
+                        ],
+                      ))
+                  .toList(),
             );
-
           } else if (snapshot.hasError) {
             return Text('${snapshot.error}');
           }
@@ -73,9 +112,8 @@ class _AllEntreprisesState extends State<AllEntreprises> {
       ),
       body: SingleChildScrollView(
           padding: EdgeInsets.all(10),
-          child: Column(
-            children: <Widget>[
-              viewAll(),
+          child: Column(children: <Widget>[
+            viewAll(),
           ])),
       floatingActionButton: FloatingActionButton.small(
         child: Icon(

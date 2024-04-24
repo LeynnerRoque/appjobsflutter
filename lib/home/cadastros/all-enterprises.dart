@@ -16,7 +16,6 @@ class _AllEntreprisesState extends State<AllEntreprises> {
     if (response.statusCode == 200) {
       var json = convert.jsonDecode(response.body);
       json as List;
-      print(json);
       return json.map((e) => Enterprises.fromJson(e)).toList();
     } else {
       throw Exception('Failed on load data');
@@ -37,20 +36,27 @@ class _AllEntreprisesState extends State<AllEntreprises> {
             return Column(
               children: views!.map((e) => new Column(
                 children: <Widget>[
-                  new Text(e.foundationName)
+                  new ListTile(
+                    leading: CircleAvatar(
+                      child: Text(e.foundationName.characters.first),
+                      radius: 30,
+                    ),
+                    title: Text(e.foundationName),
+                    subtitle: Text(e.email+"/"+e.phoneNumber),
+                    )
                 ],
               )).toList(),
             );
+
           } else if (snapshot.hasError) {
             return Text('${snapshot.error}');
           }
-          return const CircularProgressIndicator();
+          return Center(child: CircularProgressIndicator());
         });
   }
 
   @override
   void initState() {
-    //getAll();
     super.initState();
   }
 
@@ -67,22 +73,13 @@ class _AllEntreprisesState extends State<AllEntreprises> {
       ),
       body: SingleChildScrollView(
           padding: EdgeInsets.all(10),
-          child: Column(children: <Widget>[
-            Center(
-                child: Container(
-                    padding: EdgeInsets.all(10),
-                    child: Column(
-                      children: [
-                       viewAll()
-                      ],
-                    )
-                      
-                    )
-                    )
+          child: Column(
+            children: <Widget>[
+              viewAll(),
           ])),
       floatingActionButton: FloatingActionButton.small(
         child: Icon(
-          Icons.location_city,
+          Icons.add,
           color: Colors.white,
         ),
         backgroundColor: Colors.blue,

@@ -17,7 +17,6 @@ class _AllEntreprisesState extends State<AllEntreprises> {
   }
 
   gotoEdit(item){
-    print(item.id);
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => EditEnterprise(
           id: item.id,
@@ -25,6 +24,42 @@ class _AllEntreprisesState extends State<AllEntreprises> {
           email: item.email,
           phoneNumber: item.phoneNumber,
         )));
+  }
+
+  removeItem(id){
+    enterpriseService.deleteEnterprise(id);
+  }
+
+
+  openRemoveItem(id){
+    return showDialog(
+      context: context, 
+      builder: (builder){
+        return AlertDialog(
+          title: Text('Remove Enterprises', style: TextStyle(color: Colors.blue),),
+          backgroundColor: Colors.white,
+          content: Container(
+            height: 200,
+            child: Center(
+              child: Column(
+                children: [
+                  Text('Remover Enterprise?')
+                ],
+              ),
+            ),
+          ),
+          actions: [
+            TextButton(onPressed: (){
+              removeItem(id);
+              Navigator.of(context).pop();
+            }, child: Text('Sim')),
+
+            TextButton(onPressed: (){
+               Navigator.of(context).pop();
+            }, child: Text('Não'))
+          ],
+        );
+      });
   }
 
   openDialogDetails(item) {
@@ -53,7 +88,9 @@ class _AllEntreprisesState extends State<AllEntreprises> {
                       IconButton(onPressed: (){
                         gotoEdit(item);
                       }, icon: Icon(Icons.edit)),
-                      IconButton(onPressed: (){}, icon: Icon(Icons.delete)),
+                      IconButton(onPressed: (){
+                        openRemoveItem(item.id);
+                      }, icon: Icon(Icons.delete)),
                       IconButton(onPressed: (){}, icon: Icon(Icons.check)),
                       IconButton(onPressed: (){}, icon: Icon(Icons.work)),
                     ],
@@ -64,6 +101,7 @@ class _AllEntreprisesState extends State<AllEntreprises> {
           );
         });
   }
+
 
   Future<List<Enterprises>> getAll() async {
     var response = await enterpriseService.listEnterprises();
@@ -110,6 +148,7 @@ class _AllEntreprisesState extends State<AllEntreprises> {
 
   @override
   void initState() {
+    getAll();
     super.initState();
   }
 

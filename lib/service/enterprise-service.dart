@@ -23,6 +23,15 @@ class EnterprisesService{
     );
   }
 
+
+    Future<http.Response> deleteEnterprise(id){
+    return http.delete(Uri.parse(url+'delete/'+id.toString()),
+      headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    );
+  }
+
   Future<http.Response> listEnterprises(){
     return http.get(Uri.parse(url+'api/all'));
   }

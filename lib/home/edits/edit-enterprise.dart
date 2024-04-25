@@ -55,6 +55,8 @@ class _EditEnterpriseState extends State<EditEnterprise> {
             onPressed: () {
               goToViewAll();
             },
+            title: "Update Item",
+            message: "Success update item!",
           );
         });
   }

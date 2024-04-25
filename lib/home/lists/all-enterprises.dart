@@ -1,3 +1,4 @@
+import 'package:appjobsflutter/components/dialog-component.dart';
 import 'package:appjobsflutter/home/cadastros/add-enterprise.dart';
 import 'package:appjobsflutter/home/edits/edit-enterprise.dart';
 import 'package:appjobsflutter/models/enterprise.dart';
@@ -30,6 +31,20 @@ class _AllEntreprisesState extends State<AllEntreprises> {
     enterpriseService.deleteEnterprise(id);
   }
 
+  openSuccessRemove(){
+    return showDialog(
+      context: context, 
+      builder: (builder){
+        return SucessInfoAlert(
+          labelText: "ok", 
+          onPressed: (){
+            Navigator.pop(context);
+          }, 
+          title: "Delete Item", 
+          message: "Success item remove");
+      });
+  }
+
 
   openRemoveItem(id){
     return showDialog(
@@ -52,6 +67,7 @@ class _AllEntreprisesState extends State<AllEntreprises> {
             TextButton(onPressed: (){
               removeItem(id);
               Navigator.of(context).pop();
+              openSuccessRemove();
             }, child: Text('Sim')),
 
             TextButton(onPressed: (){

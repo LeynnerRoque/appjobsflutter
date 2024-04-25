@@ -5,11 +5,15 @@ class SucessInfoAlert extends StatelessWidget {
 
   final String labelText;
   final Function()? onPressed;
+  final String title;
+  final String message;
 
   SucessInfoAlert({
     Key? key,
     required this.labelText,
-    required this.onPressed
+    required this.onPressed,
+    required this.title,
+    required this.message,
   }): super(key: key);
 
 closeDialog(BuildContext context){
@@ -27,7 +31,7 @@ closeDialog(BuildContext context){
             color: Colors.blue,
           ),
           title: Text(
-            "Registro Adicionado!",
+            title,
             style: TextStyle(color: Colors.teal),
           ),
         ),
@@ -37,7 +41,7 @@ closeDialog(BuildContext context){
             child: Column(
               children: [
                 Text(
-                  "Registro Adicionado com Sucesso.",
+                  message,
                   maxLines: 4,
                   style: TextStyle(color: Colors.teal),
                 ),

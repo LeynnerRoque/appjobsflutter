@@ -20,10 +20,10 @@ class Location {
         'stateProvince': stateProvince
       };
 
-  Location.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
+  Location.fromJson(Map<String, dynamic> json): 
+        id = json['id'],
         streetAddress = json['streetAddress'],
-        postalCode = json['postalCodes'],
+        postalCode = json['postalCode'],
         city = json['city'],
         stateProvince = json['stateProvince'];
 

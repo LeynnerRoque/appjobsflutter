@@ -1,5 +1,7 @@
 import 'package:appjobsflutter/home/cadastros/add-enterprise.dart';
+import 'package:appjobsflutter/home/cadastros/add-location.dart';
 import 'package:appjobsflutter/home/lists/all-enterprises.dart';
+import 'package:appjobsflutter/home/lists/all-locations.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -14,11 +16,25 @@ class _HomePageState extends State<HomePage> {
         context, MaterialPageRoute(builder: (context) => EnterpriseAdd()));
   }
 
+  goToLocationAdd() {
+    Navigator.pop(context);
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => LocationAdd()));
+  }
+
   goToEnterpriseAll() {
     Navigator.pop(context);
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => AllEntreprises()));
   }
+
+
+    goToLocationAll() {
+    Navigator.pop(context);
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => LocationsAll()));
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +70,9 @@ class _HomePageState extends State<HomePage> {
                 "Locations",
                 style: TextStyle(color: Colors.blue),
               ),
+              onTap: (){
+                goToLocationAll();
+              },
             ),
             ListTile(
               leading: Icon(

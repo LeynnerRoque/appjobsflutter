@@ -1,7 +1,9 @@
 import 'package:appjobsflutter/home/cadastros/add-enterprise.dart';
 import 'package:appjobsflutter/home/cadastros/add-location.dart';
 import 'package:appjobsflutter/home/lists/all-enterprises.dart';
+import 'package:appjobsflutter/home/lists/all-jobs.dart';
 import 'package:appjobsflutter/home/lists/all-locations.dart';
+import 'package:appjobsflutter/home/lists/all-peoples.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -22,19 +24,27 @@ class _HomePageState extends State<HomePage> {
         context, MaterialPageRoute(builder: (context) => LocationAdd()));
   }
 
+  goToJobsAll() {
+    Navigator.pop(context);
+    Navigator.push(context, MaterialPageRoute(builder: (context) => AllJobs()));
+  }
+
   goToEnterpriseAll() {
     Navigator.pop(context);
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => AllEntreprises()));
   }
 
-
-    goToLocationAll() {
+  goToLocationAll() {
     Navigator.pop(context);
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => LocationsAll()));
   }
 
+   goToPeoplesAll() {
+    Navigator.pop(context);
+    Navigator.push(context, MaterialPageRoute(builder: (context) => AllPeoples()));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +80,7 @@ class _HomePageState extends State<HomePage> {
                 "Locations",
                 style: TextStyle(color: Colors.blue),
               ),
-              onTap: (){
+              onTap: () {
                 goToLocationAll();
               },
             ),
@@ -83,6 +93,9 @@ class _HomePageState extends State<HomePage> {
                 "Jobs",
                 style: TextStyle(color: Colors.blue),
               ),
+              onTap: () {
+                goToJobsAll();
+              },
             ),
             ListTile(
               leading: Icon(
@@ -93,6 +106,9 @@ class _HomePageState extends State<HomePage> {
                 "Peoples",
                 style: TextStyle(color: Colors.blue),
               ),
+              onTap: (){
+                goToPeoplesAll();
+              },
             ),
           ],
         ),

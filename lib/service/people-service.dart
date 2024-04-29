@@ -34,3 +34,4 @@ class PeopleService{
     return http.get(Uri.parse(url+'api/all'));
   }
 }
+final peopleService = PeopleService();

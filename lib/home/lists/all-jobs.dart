@@ -1,3 +1,4 @@
+import 'package:appjobsflutter/home/cadastros/add-job.dart';
 import 'package:appjobsflutter/home/home.dart';
 import 'package:appjobsflutter/models/job.dart';
 import 'package:appjobsflutter/service/job-service.dart';
@@ -13,6 +14,16 @@ class _AllJobsState extends State<AllJobs> {
   goToAdd() {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => HomePage()));
+  }
+
+  goToUpdate(item) {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => JobAdd(
+          id: item.id, 
+          title: item.title, 
+          description: item.description, 
+          salary: item.salary, 
+          enterprise: item.enterprise)));
   }
 
   openDialogDetails(item) {
@@ -51,7 +62,7 @@ class _AllJobsState extends State<AllJobs> {
                             icon: Icon(Icons.favorite_outline)),
                         IconButton(
                             onPressed: () {
-                              // gotoEdit(item);
+                              goToUpdate(item);
                             },
                             icon: Icon(Icons.edit)),
                         IconButton(

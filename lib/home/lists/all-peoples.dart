@@ -1,4 +1,4 @@
-import 'package:appjobsflutter/home/home.dart';
+import 'package:appjobsflutter/home/cadastros/add-people.dart';
 import 'package:appjobsflutter/models/people.dart';
 import 'package:appjobsflutter/service/people-service.dart';
 import 'package:flutter/material.dart';
@@ -11,9 +11,31 @@ class AllPeoples extends StatefulWidget {
 
 class _AllPeoplesState extends State<AllPeoples> {
 
-goToAdd() {
+  goToAdd(){
+    Navigator.push(context, MaterialPageRoute(builder: (context) => AddPeople(
+      id: 0, 
+      name: "", 
+      gender: "", 
+      age: 0, 
+      regionName: "", 
+      email: "", 
+      phone: "", 
+      job: 0, 
+      location: 0)));
+  }
+
+goToUpdate(item) {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => HomePage()));
+        context, MaterialPageRoute(builder: (context) => AddPeople(
+          id: item.id, 
+          name: item.name, 
+          gender: item.gender, 
+          age: item.age, 
+          regionName: item.regionName, 
+          email: item.email, 
+          phone: item.phone, 
+          job: item.job, 
+          location: item.location)));
   }
 
   openDialogDetails(item) {
@@ -52,7 +74,7 @@ goToAdd() {
                             icon: Icon(Icons.favorite_outline)),
                         IconButton(
                             onPressed: () {
-                              // gotoEdit(item);
+                             goToUpdate(item);
                             },
                             icon: Icon(Icons.edit)),
                         IconButton(

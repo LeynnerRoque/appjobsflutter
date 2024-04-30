@@ -1,3 +1,5 @@
+import 'package:appjobsflutter/components/row-component.dart';
+import 'package:appjobsflutter/components/row-header-component.dart';
 import 'package:appjobsflutter/home/cadastros/add-location.dart';
 import 'package:appjobsflutter/home/lists/all-enterprises.dart';
 import 'package:appjobsflutter/home/lists/all-jobs.dart';
@@ -115,127 +117,56 @@ class _HomePageState extends State<HomePage> {
               width: double.infinity,
               child: Column(
                 children: [
+                  //Menu Header
+                  RowHeaderComponent(),
+
                   Row(
                     children: [
                       Expanded(
                           child: Container(
-                        height: 180,
-                        width: double.infinity,
-                        child: ListView(
-                          scrollDirection: Axis.horizontal,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: InkWell(
-                                child: Container(
-                                  width: 140,
-                                  height: 60,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      color: Colors.blue),
-                                  child: ListTile(
-                                    title: IconButton(
-                                        onPressed: () {},
-                                        icon: Icon(
-                                          Icons.location_city,
-                                          size: 40,
-                                          color: Colors.white,
-                                        )),
-                                    subtitle: Center(
-                                      child: Text("Enterprises",
-                                          style:
-                                              TextStyle(color: Colors.white)),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: InkWell(
-                                child: Container(
-                                  width: 140,
-                                  height: 60,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      color: Colors.blue),
-                                  child: ListTile(
-                                    title: IconButton(
-                                        onPressed: () {},
-                                        icon: Icon(Icons.work,
-                                            size: 40, color: Colors.white)),
-                                    subtitle: Center(
-                                      child: Text("Jobs",
-                                          style:
-                                              TextStyle(color: Colors.white)),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: InkWell(
-                                child: Container(
-                                  width: 140,
-                                  height: 60,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      color: Colors.blue),
-                                  child: ListTile(
-                                    title: IconButton(
-                                        onPressed: () {},
-                                        icon: Icon(
-                                          Icons.map,
-                                          size: 40,
-                                          color: Colors.white,
-                                        )),
-                                    subtitle: Center(
-                                      child: Text("Locations",
-                                          style:
-                                              TextStyle(color: Colors.white)),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: InkWell(
-                                child: Container(
-                                  width: 140,
-                                  height: 60,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      color: Colors.blue),
-                                  child: ListTile(
-                                    title: IconButton(
-                                        onPressed: () {},
-                                        icon: Icon(
-                                          Icons.people,
-                                          size: 40,
-                                          color: Colors.white,
-                                        )),
-                                    subtitle: Center(
-                                      child: Text(
-                                        "Peoples",
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            )
-                          ],
+                        padding: EdgeInsets.all(10),
+                        child: Container(
+                         // height: 800,
+                          width: 500,
+                          child: Column(
+                            children: [
+                              RowComponent(
+                                  label: "Search",
+                                  label2: "Manage",
+                                  label3: "Jobs",
+                                  icon: Icon(Icons.search),
+                                  icon2: Icon(Icons.settings),
+                                  icon3: Icon(Icons.workspaces_filled),
+                                  onpressed1: () {},
+                                  onpressed2: () {},
+                                  onpressed3: () {}),
+
+                              //Line Middle Menu
+                              RowComponent(
+                                  label: "Changes",
+                                  label2: "People",
+                                  label3: "Locations",
+                                  icon: Icon(Icons.local_activity),
+                                  icon2: Icon(Icons.person),
+                                  icon3: Icon(Icons.pin_drop),
+                                  onpressed1: () {},
+                                  onpressed2: () {},
+                                  onpressed3: () {}),
+
+                              //Line Down Menu
+                              RowComponent(
+                                  label: "Report",
+                                  label2: "File",
+                                  label3: "General",
+                                  icon: Icon(Icons.repeat_on),
+                                  icon2: Icon(Icons.file_copy),
+                                  icon3: Icon(Icons.tab_unselected),
+                                  onpressed1: () {},
+                                  onpressed2: () {},
+                                  onpressed3: () {})
+                            ],
+                          ),
                         ),
-                      )
-                      )
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Expanded(child: Container(
-                        child: Text("Orders"),
                       ))
                     ],
                   )

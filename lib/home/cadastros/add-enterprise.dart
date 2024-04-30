@@ -9,6 +9,20 @@ import 'package:appjobsflutter/service/enterprise-service.dart';
 import 'package:flutter/material.dart';
 
 class EnterpriseAdd extends StatefulWidget {
+  final int id;
+final String foundationName;
+final String email;
+final String phoneNumber;
+
+EnterpriseAdd({
+  Key? key,
+  required this.id,
+  required this.foundationName,
+  required this.email,
+  required this.phoneNumber,
+}) : super(key: key);
+
+
   @override
   _EnterpriseAddState createState() => _EnterpriseAddState();
 }
@@ -47,7 +61,7 @@ class _EnterpriseAddState extends State<EnterpriseAdd> {
         });
   }
 
-  addEnterprise() async {
+  add() async {
     try {
       Enterprises enterprises = new Enterprises(
           id: 0,
@@ -61,6 +75,33 @@ class _EnterpriseAddState extends State<EnterpriseAdd> {
       print(e.uri);
       //dialog erro
     }
+  }
+
+
+  update() async {
+    try {
+      Enterprises enterprises = new Enterprises(
+          id: widget.id,
+          foundationName: foundationName.text,
+          email: email.text,
+          phoneNumber: phone.text);
+      enterpriseService.updateEnterprise(enterprises.toJson());
+      openCallsDialogSucess(context);
+      clean();
+    } on HttpException catch (e) {
+      print(e.uri);
+      //dialog erro
+    }
+  }
+
+  @override
+  void initState() {
+    if(widget.id != 0){
+      foundationName.text = widget.foundationName;
+      email.text = widget.email;
+      phone.text = widget.phoneNumber;
+    }
+    super.initState();
   }
 
   @override
@@ -119,7 +160,11 @@ class _EnterpriseAddState extends State<EnterpriseAdd> {
                             color: Colors.white,
                           ),
                           onPressed: () {
-                            addEnterprise();
+                            if(widget.id != 0){
+                              update();
+                            }else{
+                              add();
+                            }
                           }),
                       SizedBox(
                         height: 10,

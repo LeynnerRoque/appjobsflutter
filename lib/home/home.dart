@@ -1,4 +1,3 @@
-import 'package:appjobsflutter/home/cadastros/add-enterprise.dart';
 import 'package:appjobsflutter/home/cadastros/add-location.dart';
 import 'package:appjobsflutter/home/lists/all-enterprises.dart';
 import 'package:appjobsflutter/home/lists/all-jobs.dart';
@@ -12,12 +11,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  goToEnterpriseAdd() {
-    Navigator.pop(context);
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => EnterpriseAdd()));
-  }
-
   goToLocationAdd() {
     Navigator.pop(context);
     Navigator.push(
@@ -41,9 +34,10 @@ class _HomePageState extends State<HomePage> {
         context, MaterialPageRoute(builder: (context) => LocationsAll()));
   }
 
-   goToPeoplesAll() {
+  goToPeoplesAll() {
     Navigator.pop(context);
-    Navigator.push(context, MaterialPageRoute(builder: (context) => AllPeoples()));
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => AllPeoples()));
   }
 
   @override
@@ -106,13 +100,149 @@ class _HomePageState extends State<HomePage> {
                 "Peoples",
                 style: TextStyle(color: Colors.blue),
               ),
-              onTap: (){
+              onTap: () {
                 goToPeoplesAll();
               },
             ),
           ],
         ),
       ),
+      body: SingleChildScrollView(
+          padding: EdgeInsets.all(10),
+          child: Container(
+            child: Container(
+              height: 800,
+              width: double.infinity,
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Expanded(
+                          child: Container(
+                        height: 180,
+                        width: double.infinity,
+                        child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: InkWell(
+                                child: Container(
+                                  width: 140,
+                                  height: 60,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: Colors.blue),
+                                  child: ListTile(
+                                    title: IconButton(
+                                        onPressed: () {},
+                                        icon: Icon(
+                                          Icons.location_city,
+                                          size: 40,
+                                          color: Colors.white,
+                                        )),
+                                    subtitle: Center(
+                                      child: Text("Enterprises",
+                                          style:
+                                              TextStyle(color: Colors.white)),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: InkWell(
+                                child: Container(
+                                  width: 140,
+                                  height: 60,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: Colors.blue),
+                                  child: ListTile(
+                                    title: IconButton(
+                                        onPressed: () {},
+                                        icon: Icon(Icons.work,
+                                            size: 40, color: Colors.white)),
+                                    subtitle: Center(
+                                      child: Text("Jobs",
+                                          style:
+                                              TextStyle(color: Colors.white)),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: InkWell(
+                                child: Container(
+                                  width: 140,
+                                  height: 60,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: Colors.blue),
+                                  child: ListTile(
+                                    title: IconButton(
+                                        onPressed: () {},
+                                        icon: Icon(
+                                          Icons.map,
+                                          size: 40,
+                                          color: Colors.white,
+                                        )),
+                                    subtitle: Center(
+                                      child: Text("Locations",
+                                          style:
+                                              TextStyle(color: Colors.white)),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: InkWell(
+                                child: Container(
+                                  width: 140,
+                                  height: 60,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: Colors.blue),
+                                  child: ListTile(
+                                    title: IconButton(
+                                        onPressed: () {},
+                                        icon: Icon(
+                                          Icons.people,
+                                          size: 40,
+                                          color: Colors.white,
+                                        )),
+                                    subtitle: Center(
+                                      child: Text(
+                                        "Peoples",
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      )
+                      )
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Expanded(child: Container(
+                        child: Text("Orders"),
+                      ))
+                    ],
+                  )
+                ],
+              ),
+            ),
+          )),
     );
   }
 }

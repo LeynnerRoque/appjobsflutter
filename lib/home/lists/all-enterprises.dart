@@ -1,6 +1,5 @@
 import 'package:appjobsflutter/components/dialog-component.dart';
 import 'package:appjobsflutter/home/cadastros/add-enterprise.dart';
-import 'package:appjobsflutter/home/edits/edit-enterprise.dart';
 import 'package:appjobsflutter/models/enterprise.dart';
 import 'package:appjobsflutter/service/enterprise-service.dart';
 import 'package:flutter/material.dart';
@@ -14,12 +13,17 @@ class AllEntreprises extends StatefulWidget {
 class _AllEntreprisesState extends State<AllEntreprises> {
   goToAdd() {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => EnterpriseAdd()));
+        context, MaterialPageRoute(builder: (context) => EnterpriseAdd(
+          id: 0,
+          foundationName: "",
+          email: "",
+          phoneNumber: "",
+        )));
   }
 
   gotoEdit(item){
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => EditEnterprise(
+        context, MaterialPageRoute(builder: (context) => EnterpriseAdd(
           id: item.id,
           foundationName: item.foundationName,
           email: item.email,

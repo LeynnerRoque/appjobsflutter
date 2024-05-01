@@ -5,6 +5,9 @@ import 'package:appjobsflutter/home/lists/all-enterprises.dart';
 import 'package:appjobsflutter/home/lists/all-jobs.dart';
 import 'package:appjobsflutter/home/lists/all-locations.dart';
 import 'package:appjobsflutter/home/lists/all-peoples.dart';
+import 'package:appjobsflutter/home/operations/reports/jobs-on-enterprise-report.dart';
+import 'package:appjobsflutter/home/operations/reports/peoples-on-job-report.dart';
+import 'package:appjobsflutter/home/operations/reports/peoples-on-local-report.dart';
 import 'package:appjobsflutter/home/operations/searchs/search-enterprise.dart';
 import 'package:appjobsflutter/home/operations/searchs/search-job.dart';
 import 'package:appjobsflutter/home/operations/searchs/search-people.dart';
@@ -45,19 +48,34 @@ class _HomePageState extends State<HomePage> {
         context, MaterialPageRoute(builder: (context) => AllPeoples()));
   }
 
-  goToSearchPage(){
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => SearchEnterprisePage()));
+  goToSearchPage() {
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => SearchEnterprisePage()));
   }
 
-   goToSearchJobPage(){
+  goToSearchJobPage() {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => SearchJobPage()));
   }
 
-     goToSearchPeoplePage(){
+  goToSearchPeoplePage() {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => SearchPeoplePage()));
+  }
+
+  goToReportPeoplesOnJob() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => PeoplesOnJobsPage()));
+  }
+
+  goToReportPeoplesOnLocal() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => PeoplesOnLocalPage()));
+  }
+
+  goToReportJobsOnEnterprise() {
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => JobsOnEnterprisePage()));
   }
 
   @override
@@ -144,7 +162,7 @@ class _HomePageState extends State<HomePage> {
                           child: Container(
                         padding: EdgeInsets.all(10),
                         child: Container(
-                         // height: 800,
+                          // height: 800,
                           width: 500,
                           child: Column(
                             children: [
@@ -167,20 +185,26 @@ class _HomePageState extends State<HomePage> {
 
                               //Line Middle Menu
                               RowComponent(
-                                  label: "Changes",
-                                  label2: "People",
-                                  label3: "Locations",
-                                  icon: Icon(Icons.local_activity),
-                                  icon2: Icon(Icons.person),
+                                  label: "Peoples on Job",
+                                  label2: "Peoples on Local",
+                                  label3: "Jobs on Enterprises",
+                                  icon: Icon(Icons.person_search),
+                                  icon2: Icon(Icons.person_pin),
                                   icon3: Icon(Icons.pin_drop),
-                                  onpressed1: () {},
-                                  onpressed2: () {},
-                                  onpressed3: () {}),
+                                  onpressed1: () {
+                                    goToReportPeoplesOnJob();
+                                  },
+                                  onpressed2: () {
+                                    goToReportPeoplesOnLocal();
+                                  },
+                                  onpressed3: () {
+                                    goToReportJobsOnEnterprise();
+                                  }),
 
                               //Line Down Menu
                               RowComponent(
-                                  label: "Report",
-                                  label2: "File",
+                                  label: "Transfer",
+                                  label2: "Files",
                                   label3: "General",
                                   icon: Icon(Icons.repeat_on),
                                   icon2: Icon(Icons.file_copy),

@@ -15,11 +15,12 @@ class _SearchEnterprisePage extends State<SearchEnterprisePage> {
   bool showSearchReturn = false;
   bool notResult = false;
 
-    Future<Enterprises> getAll() async {
-    var response = await enterpriseService.findEnterprises(searchController.text);
+  Future<Enterprises> getAll() async {
+    var response =
+        await enterpriseService.findEnterprises(searchController.text);
     if (response.statusCode == 200) {
       var json = convert.jsonDecode(response.body);
-      json as  Map<String, dynamic>;
+      json as Map<String, dynamic>;
       setState(() {
         showSearchReturn = true;
       });
@@ -29,30 +30,29 @@ class _SearchEnterprisePage extends State<SearchEnterprisePage> {
     }
   }
 
-   FutureBuilder<Enterprises> viewAll() {
+  FutureBuilder<Enterprises> viewAll() {
     return FutureBuilder(
         future: getAll(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             Enterprises? views = snapshot.data;
             return ListTile(
-                            leading: CircleAvatar(
-                              child: Text(views!.foundationName.characters.first),
-                              radius: 30,
-                            ),
-                            title: Text(views.foundationName),
-                            subtitle: Text(views.email + "/" + views.phoneNumber),
-                            onTap: () {
-                              //openDialogDetails(e);
-                            },
-                          );
+              leading: CircleAvatar(
+                child: Text(views!.foundationName.characters.first),
+                radius: 30,
+              ),
+              title: Text(views.foundationName),
+              subtitle: Text(views.email + "/" + views.phoneNumber),
+              onTap: () {
+                //openDialogDetails(e);
+              },
+            );
           } else if (snapshot.hasError) {
             return Text('${snapshot.error}');
           }
           return Center(child: CircularProgressIndicator());
         });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -72,30 +72,28 @@ class _SearchEnterprisePage extends State<SearchEnterprisePage> {
             Row(
               children: [
                 Expanded(
-                  flex: 12,
-                  child: FieldComponent(
-                    controller: searchController, 
-                    labelText: "Busca", 
-                    icon: Icon(Icons.search), 
-                    obscureText: false, 
-                    tipoEntrada: TextInputType.text)),
-                    Expanded(
-                      flex: 3,
-                      child: CircleButtonComponent(onPressed: (){
-                        getAll();
-                        }))
+                    flex: 12,
+                    child: FieldComponent(
+                        controller: searchController,
+                        labelText: "Busca",
+                        icon: Icon(Icons.search),
+                        obscureText: false,
+                        tipoEntrada: TextInputType.text)),
+                Expanded(
+                    flex: 3,
+                    child: CircleButtonComponent(onPressed: () {
+                      getAll();
+                    }))
               ],
             ),
             SizedBox(
-                height: 10,
-              ),
-
-              Visibility(
-                child: viewAll(),
-                visible: showSearchReturn,
-                ),
-          ])
-          ),
+              height: 10,
+            ),
+            Visibility(
+              child: viewAll(),
+              visible: showSearchReturn,
+            ),
+          ])),
     );
   }
 }

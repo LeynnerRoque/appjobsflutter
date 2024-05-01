@@ -11,8 +11,7 @@ class SearchPeoplePage extends StatefulWidget {
 }
 
 class _SearchPeoplePageState extends State<SearchPeoplePage> {
-
-final searchController = TextEditingController();
+  final searchController = TextEditingController();
   bool showSearchReturn = false;
   bool notResult = false;
 
@@ -20,7 +19,7 @@ final searchController = TextEditingController();
     var response = await peopleService.findOne(searchController.text);
     if (response.statusCode == 200) {
       var json = convert.jsonDecode(response.body);
-      json as  Map<String, dynamic>;
+      json as Map<String, dynamic>;
       setState(() {
         showSearchReturn = true;
       });
@@ -30,30 +29,29 @@ final searchController = TextEditingController();
     }
   }
 
-   FutureBuilder<People> viewJob() {
+  FutureBuilder<People> viewJob() {
     return FutureBuilder(
         future: getJob(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             People? views = snapshot.data;
             return ListTile(
-                            leading: CircleAvatar(
-                              child: Text(views!.name.characters.first),
-                              radius: 30,
-                            ),
-                            title: Text(views.name),
-                            subtitle: Text(views.email + "/" + views.phone),
-                            onTap: () {
-                              //openDialogDetails(e);
-                            },
-                          );
+              leading: CircleAvatar(
+                child: Text(views!.name.characters.first),
+                radius: 30,
+              ),
+              title: Text(views.name),
+              subtitle: Text(views.email + "/" + views.phone),
+              onTap: () {
+                //openDialogDetails(e);
+              },
+            );
           } else if (snapshot.hasError) {
             return Text('${snapshot.error}');
           }
           return Center(child: CircularProgressIndicator());
         });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -73,30 +71,28 @@ final searchController = TextEditingController();
             Row(
               children: [
                 Expanded(
-                  flex: 12,
-                  child: FieldComponent(
-                    controller: searchController, 
-                    labelText: "Busca", 
-                    icon: Icon(Icons.search), 
-                    obscureText: false, 
-                    tipoEntrada: TextInputType.text)),
-                    Expanded(
-                      flex: 3,
-                      child: CircleButtonComponent(onPressed: (){
-                        getJob();
-                        }))
+                    flex: 12,
+                    child: FieldComponent(
+                        controller: searchController,
+                        labelText: "Busca",
+                        icon: Icon(Icons.search),
+                        obscureText: false,
+                        tipoEntrada: TextInputType.text)),
+                Expanded(
+                    flex: 3,
+                    child: CircleButtonComponent(onPressed: () {
+                      getJob();
+                    }))
               ],
             ),
             SizedBox(
-                height: 10,
-              ),
-
-              Visibility(
-                child: viewJob(),
-                visible: showSearchReturn,
-                ),
-          ])
-          ),
+              height: 10,
+            ),
+            Visibility(
+              child: viewJob(),
+              visible: showSearchReturn,
+            ),
+          ])),
     );
   }
 }

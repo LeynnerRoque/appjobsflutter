@@ -5,6 +5,7 @@ import 'package:appjobsflutter/home/lists/all-enterprises.dart';
 import 'package:appjobsflutter/home/lists/all-jobs.dart';
 import 'package:appjobsflutter/home/lists/all-locations.dart';
 import 'package:appjobsflutter/home/lists/all-peoples.dart';
+import 'package:appjobsflutter/home/operations/search.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -40,6 +41,11 @@ class _HomePageState extends State<HomePage> {
     Navigator.pop(context);
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => AllPeoples()));
+  }
+
+  goToSearchPage(){
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => SearchPage()));
   }
 
   @override
@@ -137,7 +143,9 @@ class _HomePageState extends State<HomePage> {
                                   icon: Icon(Icons.search),
                                   icon2: Icon(Icons.settings),
                                   icon3: Icon(Icons.workspaces_filled),
-                                  onpressed1: () {},
+                                  onpressed1: () {
+                                    goToSearchPage();
+                                  },
                                   onpressed2: () {},
                                   onpressed3: () {}),
 

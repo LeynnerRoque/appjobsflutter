@@ -35,5 +35,9 @@ class EnterprisesService{
   Future<http.Response> listEnterprises(){
     return http.get(Uri.parse(url+'api/all'));
   }
+
+  Future<http.Response> findEnterprises(filterName){
+    return http.get(Uri.parse(url+'filterName/'+filterName));
+  }
 }
 final enterpriseService = EnterprisesService();

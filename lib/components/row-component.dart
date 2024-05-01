@@ -40,7 +40,7 @@ class RowComponent extends StatelessWidget {
             ),
           ),
           subtitle: Center(
-            child: Text(label),
+            child: Text(label,maxLines: 2, textAlign: TextAlign.center,),
           ),
         )),
         Expanded(
@@ -55,7 +55,7 @@ class RowComponent extends StatelessWidget {
             ),
           ),
           subtitle: Center(
-            child: Text(label2),
+            child: Text(label2, maxLines: 2, textAlign: TextAlign.center,),
           ),
         )),
         Expanded(
@@ -70,7 +70,7 @@ class RowComponent extends StatelessWidget {
             ),
           ),
           subtitle: Center(
-            child: Text(label3),
+            child: Text(label3, maxLines: 2,textAlign: TextAlign.center),
           ),
         ))
       ],

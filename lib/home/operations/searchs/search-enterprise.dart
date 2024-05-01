@@ -5,12 +5,12 @@ import 'package:appjobsflutter/service/enterprise-service.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert' as convert;
 
-class SearchPage extends StatefulWidget {
+class SearchEnterprisePage extends StatefulWidget {
   @override
-  _SearchPageState createState() => _SearchPageState();
+  _SearchEnterprisePage createState() => _SearchEnterprisePage();
 }
 
-class _SearchPageState extends State<SearchPage> {
+class _SearchEnterprisePage extends State<SearchEnterprisePage> {
   final searchController = TextEditingController();
   bool showSearchReturn = false;
   bool notResult = false;
@@ -20,7 +20,6 @@ class _SearchPageState extends State<SearchPage> {
     if (response.statusCode == 200) {
       var json = convert.jsonDecode(response.body);
       json as  Map<String, dynamic>;
-      print(json);
       setState(() {
         showSearchReturn = true;
       });
@@ -55,7 +54,6 @@ class _SearchPageState extends State<SearchPage> {
   }
 
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -83,7 +81,9 @@ class _SearchPageState extends State<SearchPage> {
                     tipoEntrada: TextInputType.text)),
                     Expanded(
                       flex: 3,
-                      child: CircleButtonComponent(onPressed: (){getAll();}))
+                      child: CircleButtonComponent(onPressed: (){
+                        getAll();
+                        }))
               ],
             ),
             SizedBox(
@@ -94,8 +94,6 @@ class _SearchPageState extends State<SearchPage> {
                 child: viewAll(),
                 visible: showSearchReturn,
                 ),
-
-
           ])
           ),
     );

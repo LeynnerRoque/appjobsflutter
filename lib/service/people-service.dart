@@ -33,5 +33,9 @@ class PeopleService{
   Future<http.Response> listAll(){
     return http.get(Uri.parse(url+'api/all'));
   }
+
+  Future<http.Response> findOne(name){
+    return http.get(Uri.parse(url+'filterByName/'+name));
+  }
 }
 final peopleService = PeopleService();

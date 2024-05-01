@@ -5,7 +5,9 @@ import 'package:appjobsflutter/home/lists/all-enterprises.dart';
 import 'package:appjobsflutter/home/lists/all-jobs.dart';
 import 'package:appjobsflutter/home/lists/all-locations.dart';
 import 'package:appjobsflutter/home/lists/all-peoples.dart';
-import 'package:appjobsflutter/home/operations/search.dart';
+import 'package:appjobsflutter/home/operations/searchs/search-enterprise.dart';
+import 'package:appjobsflutter/home/operations/searchs/search-job.dart';
+import 'package:appjobsflutter/home/operations/searchs/search-people.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -45,7 +47,17 @@ class _HomePageState extends State<HomePage> {
 
   goToSearchPage(){
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => SearchPage()));
+        context, MaterialPageRoute(builder: (context) => SearchEnterprisePage()));
+  }
+
+   goToSearchJobPage(){
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => SearchJobPage()));
+  }
+
+     goToSearchPeoplePage(){
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => SearchPeoplePage()));
   }
 
   @override
@@ -137,17 +149,21 @@ class _HomePageState extends State<HomePage> {
                           child: Column(
                             children: [
                               RowComponent(
-                                  label: "Search",
-                                  label2: "Manage",
-                                  label3: "Jobs",
+                                  label: "Search Enterprises",
+                                  label2: "Search Jobs title",
+                                  label3: "Search Peoples",
                                   icon: Icon(Icons.search),
-                                  icon2: Icon(Icons.settings),
-                                  icon3: Icon(Icons.workspaces_filled),
+                                  icon2: Icon(Icons.search_sharp),
+                                  icon3: Icon(Icons.search_rounded),
                                   onpressed1: () {
                                     goToSearchPage();
                                   },
-                                  onpressed2: () {},
-                                  onpressed3: () {}),
+                                  onpressed2: () {
+                                    goToSearchJobPage();
+                                  },
+                                  onpressed3: () {
+                                    goToSearchPeoplePage();
+                                  }),
 
                               //Line Middle Menu
                               RowComponent(

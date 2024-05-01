@@ -36,5 +36,9 @@ class JobService{
   Future<http.Response> listAll(){
     return http.get(Uri.parse(url+'api/all'));
   }
+
+   Future<http.Response> findOne(title){
+    return http.get(Uri.parse(url+'api/findTitle/'+title));
+  }
 }
 final jobService = JobService();

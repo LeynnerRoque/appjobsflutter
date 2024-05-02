@@ -5,6 +5,7 @@ import 'package:appjobsflutter/home/lists/all-enterprises.dart';
 import 'package:appjobsflutter/home/lists/all-jobs.dart';
 import 'package:appjobsflutter/home/lists/all-locations.dart';
 import 'package:appjobsflutter/home/lists/all-peoples.dart';
+import 'package:appjobsflutter/home/operations/management/transfer-job.dart';
 import 'package:appjobsflutter/home/operations/reports/jobs-on-enterprise-report.dart';
 import 'package:appjobsflutter/home/operations/reports/peoples-on-job-report.dart';
 import 'package:appjobsflutter/home/operations/reports/peoples-on-local-report.dart';
@@ -76,6 +77,11 @@ class _HomePageState extends State<HomePage> {
   goToReportJobsOnEnterprise() {
     Navigator.push(context,
         MaterialPageRoute(builder: (context) => JobsOnEnterprisePage()));
+  }
+
+  goToTransferJob() {
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => TransferJobPage(idPeople: 0,)));
   }
 
   @override
@@ -209,7 +215,9 @@ class _HomePageState extends State<HomePage> {
                                   icon: Icon(Icons.repeat_on),
                                   icon2: Icon(Icons.file_copy),
                                   icon3: Icon(Icons.tab_unselected),
-                                  onpressed1: () {},
+                                  onpressed1: () {
+                                    goToTransferJob();
+                                  },
                                   onpressed2: () {},
                                   onpressed3: () {})
                             ],

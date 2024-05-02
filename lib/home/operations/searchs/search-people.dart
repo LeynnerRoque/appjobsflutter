@@ -15,7 +15,7 @@ class _SearchPeoplePageState extends State<SearchPeoplePage> {
   bool showSearchReturn = false;
   bool notResult = false;
 
-  Future<People> getJob() async {
+  Future<People> getPeople() async {
     var response = await peopleService.findOne(searchController.text);
     if (response.statusCode == 200) {
       var json = convert.jsonDecode(response.body);
@@ -29,9 +29,9 @@ class _SearchPeoplePageState extends State<SearchPeoplePage> {
     }
   }
 
-  FutureBuilder<People> viewJob() {
+  FutureBuilder<People> view() {
     return FutureBuilder(
-        future: getJob(),
+        future: getPeople(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             People? views = snapshot.data;
@@ -81,7 +81,7 @@ class _SearchPeoplePageState extends State<SearchPeoplePage> {
                 Expanded(
                     flex: 3,
                     child: CircleButtonComponent(onPressed: () {
-                      getJob();
+                      getPeople();
                     }))
               ],
             ),
@@ -89,7 +89,7 @@ class _SearchPeoplePageState extends State<SearchPeoplePage> {
               height: 10,
             ),
             Visibility(
-              child: viewJob(),
+              child: view(),
               visible: showSearchReturn,
             ),
           ])),

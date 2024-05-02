@@ -41,6 +41,10 @@ class JobService {
     return http
         .get(Uri.parse(url + 'filterByNameFoundation/' + foundationName.toString()));
   }
+
+    Future<http.Response> findById(id) {
+    return http.get(Uri.parse(url + id));
+  }
 }
 
 final jobService = JobService();

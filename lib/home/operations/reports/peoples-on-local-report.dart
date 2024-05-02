@@ -39,14 +39,17 @@ class _PeoplesOnLocalPageState extends State<PeoplesOnLocalPage> {
               children: views!
                   .map((e) => Column(
                         children: <Widget>[
-                          ListTile(
-                            leading: CircleAvatar(
-                              child: Text(e.name.characters.first),
-                              radius: 30,
-                              backgroundColor: Colors.grey[200],
+                          Card(
+                            child: ListTile(
+                              leading: CircleAvatar(
+                                child: Text(e.name.characters.first),
+                                radius: 30,
+                                backgroundColor: Colors.grey[200],
+                              ),
+                              title: Text("Name: " + e.name),
+                              subtitle: Text("E-Mail:" + e.email),
                             ),
-                            title: Text("Name: " + e.name),
-                            subtitle: Text("E-Mail:" + e.email),
+                            color: Colors.grey[300],
                           )
                         ],
                       ))

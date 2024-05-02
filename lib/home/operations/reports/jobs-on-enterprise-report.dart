@@ -37,19 +37,21 @@ class _JobsOnEnterprisePageState extends State<JobsOnEnterprisePage> {
             List<Job>? views = snapshot.data;
             return Column(
               children: views!
-                  .map((e) => new Column(
+                  .map((e) => Column(
                         children: <Widget>[
-                          new ListTile(
-                            leading: CircleAvatar(
-                              child: Text(e.title.characters.first),
-                              radius: 30,
-                              backgroundColor: Colors.grey[200],
+                          Card(
+                            child: ListTile(
+                              leading: CircleAvatar(
+                                child: Text(e.title.characters.first),
+                                radius: 30,
+                                backgroundColor: Colors.grey[200],
+                              ),
+                              title: Text(e.title),
+                              subtitle: Text(e.description),
+                              onTap: () {
+                                // openDialogDetails(e);
+                              },
                             ),
-                            title: Text(e.title),
-                            subtitle: Text(e.description),
-                            onTap: () {
-                              // openDialogDetails(e);
-                            },
                           )
                         ],
                       ))

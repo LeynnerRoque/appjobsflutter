@@ -39,7 +39,8 @@ class _PeoplesOnJobsPageState extends State<PeoplesOnJobsPage> {
               children: views!
                   .map((e) => Column(
                         children: <Widget>[
-                          ListTile(
+                          Card(
+                            child: ListTile(
                             leading: CircleAvatar(
                               child: Text(e.name.characters.first),
                               radius: 30,
@@ -47,7 +48,9 @@ class _PeoplesOnJobsPageState extends State<PeoplesOnJobsPage> {
                             ),
                             title: Text("Name: " + e.name),
                             subtitle: Text("E-Mail:" + e.email),
-                          )
+                          ),
+                          color: Colors.grey[300],
+                          ),
                         ],
                       ))
                   .toList(),
@@ -92,7 +95,7 @@ class _PeoplesOnJobsPageState extends State<PeoplesOnJobsPage> {
               ],
             ),
             SizedBox(
-              height: 10,
+              height: 20,
             ),
             Visibility(
               child: viewAll(),

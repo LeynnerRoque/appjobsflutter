@@ -190,7 +190,7 @@ class _HomePageState extends State<HomePage> {
                                   label3: "Jobs on Enterprises",
                                   icon: Icon(Icons.person_search),
                                   icon2: Icon(Icons.person_pin),
-                                  icon3: Icon(Icons.pin_drop),
+                                  icon3: Icon(Icons.work),
                                   onpressed1: () {
                                     goToReportPeoplesOnJob();
                                   },

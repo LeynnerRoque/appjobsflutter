@@ -1,4 +1,5 @@
 import 'package:appjobsflutter/home/cadastros/add-people.dart';
+import 'package:appjobsflutter/home/operations/management/transfer-job.dart';
 import 'package:appjobsflutter/models/people.dart';
 import 'package:appjobsflutter/service/people-service.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +37,11 @@ goToUpdate(item) {
           phone: item.phone, 
           job: item.job, 
           location: item.location)));
+  }
+
+  goToTransferJob(peopleCode) {
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => TransferJobPage(idPeople: peopleCode,)));
   }
 
   openDialogDetails(item) {
@@ -82,8 +88,11 @@ goToUpdate(item) {
                               // openRemoveItem(item.id);
                             },
                             icon: Icon(Icons.delete)),
-                        IconButton(onPressed: () {}, icon: Icon(Icons.check)),
-                        IconButton(onPressed: () {}, icon: Icon(Icons.work)),
+                        IconButton(
+                          onPressed: () {
+                            goToTransferJob(item.id);
+                        }, icon: Icon(Icons.repeat_on)),
+                        IconButton(onPressed: () {}, icon: Icon(Icons.mail)),
                       ],
                     ),
                   ]),

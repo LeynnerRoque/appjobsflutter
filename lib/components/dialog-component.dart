@@ -51,7 +51,7 @@ closeDialog(BuildContext context){
         ),
         actions: <Widget>[
           TextButtonComponent(
-            labelText: "Fechar", 
+            labelText: "close", 
             onPressed: (){
               closeDialog(context);
             }),

@@ -98,7 +98,7 @@ class _AddPeopleState extends State<AddPeople> {
     }
   }
 
-  update(){
+  update() {
     try {
       People people = new People(
           id: widget.id,
@@ -120,7 +120,7 @@ class _AddPeopleState extends State<AddPeople> {
 
   @override
   void initState() {
-    if(widget.id != 0){
+    if (widget.id != 0) {
       name.text = widget.name;
       gender.text = widget.gender;
       age.text = widget.age.toString();
@@ -136,127 +136,127 @@ class _AddPeopleState extends State<AddPeople> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Add People",
-          style: TextStyle(color: Colors.white),
+        appBar: AppBar(
+          title: Text(
+            "Add People",
+            style: TextStyle(color: Colors.white),
+          ),
+          backgroundColor: Colors.blue,
+          iconTheme: IconThemeData(color: Colors.white),
         ),
-        backgroundColor: Colors.blue,
-        iconTheme: IconThemeData(color: Colors.white),
-      ),
-      body: SingleChildScrollView(
-            padding: EdgeInsets.all(10),
-            child: Column(children: <Widget>[
-              Center(
-                child: Container(
-                  padding: EdgeInsets.all(10),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 8,
-                      ),
-                      FieldComponent(
-                          controller: name,
-                          labelText: "Name",
-                          icon: Icon(Icons.text_fields),
-                          obscureText: false,
-                          tipoEntrada: TextInputType.text),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      FieldComponent(
-                          controller: gender,
-                          labelText: "Gender",
-                          icon: Icon(Icons.text_fields),
-                          obscureText: false,
-                          tipoEntrada: TextInputType.text),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      FieldComponent(
-                          controller: age,
-                          labelText: "Age",
-                          icon: Icon(Icons.cake),
-                          obscureText: false,
-                          tipoEntrada: TextInputType.number),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      FieldComponent(
-                          controller: regionName,
-                          labelText: "Region Name",
-                          icon: Icon(Icons.location_city),
-                          obscureText: false,
-                          tipoEntrada: TextInputType.text),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      FieldComponent(
-                          controller: email,
-                          labelText: "e-mail",
-                          icon: Icon(Icons.mail),
-                          obscureText: false,
-                          tipoEntrada: TextInputType.text),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      FieldComponent(
-                          controller: phone,
-                          labelText: "Phone",
-                          icon: Icon(Icons.location_city),
-                          obscureText: false,
-                          tipoEntrada: TextInputType.text),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      FieldComponent(
-                          controller: job,
-                          labelText: "Job Code",
-                          icon: Icon(Icons.location_city),
-                          obscureText: false,
-                          tipoEntrada: TextInputType.number),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      FieldComponent(
-                          controller: location,
-                          labelText: "Location Code",
-                          icon: Icon(Icons.location_city),
-                          obscureText: false,
-                          tipoEntrada: TextInputType.number),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      ButtonIconComponent(
-                          texto: "salvar",
-                          icon: Icon(
-                            Icons.check,
-                            color: Colors.white,
-                          ),
-                          onPressed: () {
-                            if(widget.id != 0){
-                               update();
-                            }else{
-                              add();
-                            }
-                          }),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      ButtonIconComponent(
-                          texto: "limpar",
-                          icon: Icon(
-                            Icons.cleaning_services,
-                            color: Colors.white,
-                          ),
-                          onPressed: () {
-                            clean();
-                          })
-                    ],
-                  ),
+        body: SingleChildScrollView(
+          padding: EdgeInsets.all(10),
+          child: Column(children: <Widget>[
+            Center(
+              child: Container(
+                padding: EdgeInsets.all(10),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 8,
+                    ),
+                    FieldComponent(
+                        controller: name,
+                        labelText: "Name",
+                        icon: Icon(Icons.text_fields),
+                        obscureText: false,
+                        tipoEntrada: TextInputType.text),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    FieldComponent(
+                        controller: gender,
+                        labelText: "Gender",
+                        icon: Icon(Icons.text_fields),
+                        obscureText: false,
+                        tipoEntrada: TextInputType.text),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    FieldComponent(
+                        controller: age,
+                        labelText: "Age",
+                        icon: Icon(Icons.cake),
+                        obscureText: false,
+                        tipoEntrada: TextInputType.number),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    FieldComponent(
+                        controller: regionName,
+                        labelText: "Region Name",
+                        icon: Icon(Icons.location_city),
+                        obscureText: false,
+                        tipoEntrada: TextInputType.text),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    FieldComponent(
+                        controller: email,
+                        labelText: "e-mail",
+                        icon: Icon(Icons.mail),
+                        obscureText: false,
+                        tipoEntrada: TextInputType.text),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    FieldComponent(
+                        controller: phone,
+                        labelText: "Phone",
+                        icon: Icon(Icons.location_city),
+                        obscureText: false,
+                        tipoEntrada: TextInputType.text),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    FieldComponent(
+                        controller: job,
+                        labelText: "Job Code",
+                        icon: Icon(Icons.location_city),
+                        obscureText: false,
+                        tipoEntrada: TextInputType.number),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    FieldComponent(
+                        controller: location,
+                        labelText: "Location Code",
+                        icon: Icon(Icons.location_city),
+                        obscureText: false,
+                        tipoEntrada: TextInputType.number),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    ButtonIconComponent(
+                        texto: "salvar",
+                        icon: Icon(
+                          Icons.check,
+                          color: Colors.white,
+                        ),
+                        onPressed: () {
+                          if (widget.id != 0) {
+                            update();
+                          } else {
+                            add();
+                          }
+                        }),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    ButtonIconComponent(
+                        texto: "limpar",
+                        icon: Icon(
+                          Icons.cleaning_services,
+                          color: Colors.white,
+                        ),
+                        onPressed: () {
+                          clean();
+                        })
+                  ],
                 ),
               ),
-            ]),
-    ));
+            ),
+          ]),
+        ));
   }
 }

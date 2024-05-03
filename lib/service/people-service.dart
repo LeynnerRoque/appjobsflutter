@@ -49,8 +49,8 @@ class PeopleService {
     return http.get(Uri.parse(url + id));
   }
 
-  Future<http.Response> changeJob(idPeople, idJob) {
-    return http.post(Uri.parse(url + idPeople + '/' + idJob));
+  Future<http.Response> changeJob(peopleCode, idJob) {
+    return http.put(Uri.parse(url +'changeJob/' + peopleCode.toString() + '/' + idJob.toString()));
   }
 }
 

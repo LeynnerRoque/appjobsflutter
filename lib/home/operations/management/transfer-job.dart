@@ -29,7 +29,7 @@ class _TransferJobPageState extends State<TransferJobPage> {
   @override
   void initState() {
     if (widget.idPeople != 0) {
-      idPeopleSearch.text = idPeopleSearch.toString();
+      idPeopleSearch.text = widget.idPeople.toString();
     }
     super.initState();
   }
@@ -74,7 +74,7 @@ class _TransferJobPageState extends State<TransferJobPage> {
                 radius: 30,
               ),
               title: Text(views.name),
-              subtitle: Text(" - Job Code: "+views.job.toString()),
+              subtitle: Text(" - Job Code: " + views.job.toString()),
               onTap: () {
                 //openDialogDetails(e);
               },
@@ -110,7 +110,7 @@ class _TransferJobPageState extends State<TransferJobPage> {
         });
   }
 
-    openCallsDialogSucess(BuildContext context) {
+  openCallsDialogSucess(BuildContext context) {
     return showDialog(
         context: context,
         builder: (context) {
@@ -118,25 +118,26 @@ class _TransferJobPageState extends State<TransferJobPage> {
             labelText: 'view all',
             onPressed: () {
               Navigator.pop(context);
-             Navigator.push(context, MaterialPageRoute(builder: (context) => PeoplesOnJobsPage()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => PeoplesOnJobsPage()));
             },
-            title: "Save Item",
-            message: "Success item save",
+            title: "Transfer Item",
+            message: "Success item transfer",
           );
         });
   }
 
-   transferJob() async{
-    var response = await  peopleService.changeJob(idPeopleSearch, idJob);
-    if(response.statusCode == 200){
+  transferJob() async {
+    var idPeopleOrigin = idPeopleSearch.text;
+    var idJobDestiny = idJob.text;
+    var response = await peopleService.changeJob(idPeopleOrigin, idJobDestiny);
+    if (response.statusCode == 200) {
       openCallsDialogSucess(context);
-    }else{
+    } else {
+      print(idPeopleOrigin + "--" + idJobDestiny);
       print(response.statusCode);
     }
-
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -192,7 +193,7 @@ class _TransferJobPageState extends State<TransferJobPage> {
                     flex: 12,
                     child: FieldComponent(
                         controller: idJob,
-                        labelText: "Job Code",
+                        labelText: "New Job Destiny Code",
                         icon: Icon(Icons.search),
                         obscureText: false,
                         tipoEntrada: TextInputType.text)),
@@ -210,18 +211,18 @@ class _TransferJobPageState extends State<TransferJobPage> {
               child: viewJob(),
               visible: showJobSearchReturn,
             ),
-
             SizedBox(
               height: 20,
             ),
-
-
             ButtonIconComponent(
-              texto: "Transfer", icon: Icon(Icons.repeat_on, color: Colors.blue,),
-              onPressed: (){
-                transferJob();
-              })
-
+                texto: "Transfer",
+                icon: Icon(
+                  Icons.repeat_on,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  transferJob();
+                })
           ])),
     );
   }

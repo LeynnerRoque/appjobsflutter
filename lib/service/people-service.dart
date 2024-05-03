@@ -49,8 +49,12 @@ class PeopleService {
     return http.get(Uri.parse(url +'findOne/'+ id));
   }
 
-  Future<http.Response> changeJob(peopleCode, idJob) {
-    return http.put(Uri.parse(url +'changeJob/' + peopleCode.toString() + '/' + idJob.toString()));
+  Future<http.Response> changeJob(data) {
+    return http.put(Uri.parse(url +'changeJob/'), 
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(data));
   }
 }
 

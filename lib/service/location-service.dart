@@ -5,7 +5,7 @@ class LocationService{
   final url = 'http://192.168.68.30:8080/location/';
 
     Future<http.Response> add(data){
-    return http.post(Uri.parse(url+'api/add'),
+    return http.post(Uri.parse(url+'add'),
       headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -14,7 +14,7 @@ class LocationService{
   }
 
   Future<http.Response> listAll(){
-    return http.get(Uri.parse(url+'api/all'));
+    return http.get(Uri.parse(url+'all'));
   }
 }
 final locationService = LocationService();

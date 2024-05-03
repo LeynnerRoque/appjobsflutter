@@ -5,6 +5,7 @@ import 'package:appjobsflutter/components/field-component.dart';
 import 'package:appjobsflutter/home/operations/reports/peoples-on-job-report.dart';
 import 'package:appjobsflutter/models/job.dart';
 import 'package:appjobsflutter/models/people.dart';
+import 'package:appjobsflutter/models/transfers/transfers-new-job.dart';
 import 'package:appjobsflutter/service/job-service.dart';
 import 'package:appjobsflutter/service/people-service.dart';
 import 'package:flutter/material.dart';
@@ -128,13 +129,15 @@ class _TransferJobPageState extends State<TransferJobPage> {
   }
 
   transferJob() async {
-    var idPeopleOrigin = idPeopleSearch.text;
-    var idJobDestiny = idJob.text;
-    var response = await peopleService.changeJob(idPeopleOrigin, idJobDestiny);
+    var idPeopleOrigin = int.parse(idPeopleSearch.text);
+    var idJobDestiny = int.parse(idJob.text);
+    TransferNewJob newJob = new TransferNewJob(
+      idPeople: idPeopleOrigin, 
+      idNewJob: idJobDestiny);
+    var response = await peopleService.changeJob(newJob.toJson());
     if (response.statusCode == 200) {
       openCallsDialogSucess(context);
     } else {
-      print(idPeopleOrigin + "--" + idJobDestiny);
       print(response.statusCode);
     }
   }

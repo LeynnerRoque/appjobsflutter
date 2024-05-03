@@ -5,7 +5,7 @@ class PeopleService {
   final url = 'http://192.168.68.30:8080/people/';
 
   Future<http.Response> add(data) {
-    return http.post(Uri.parse(url + 'api/add'),
+    return http.post(Uri.parse(url + 'add'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -13,7 +13,7 @@ class PeopleService {
   }
 
   Future<http.Response> update(data) {
-    return http.put(Uri.parse(url + 'api/up'),
+    return http.put(Uri.parse(url + 'up'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -30,7 +30,7 @@ class PeopleService {
   }
 
   Future<http.Response> listAll() {
-    return http.get(Uri.parse(url + 'api/all'));
+    return http.get(Uri.parse(url + 'all'));
   }
 
   Future<http.Response> findOne(name) {
@@ -42,11 +42,11 @@ class PeopleService {
   }
 
   Future<http.Response> peoplesOnLocal(id) {
-    return http.get(Uri.parse(url + 'api/findByLocal/' + id.toString()));
+    return http.get(Uri.parse(url + 'findByLocal/' + id.toString()));
   }
 
   Future<http.Response> findById(id) {
-    return http.get(Uri.parse(url + id));
+    return http.get(Uri.parse(url +'findOne/'+ id));
   }
 
   Future<http.Response> changeJob(peopleCode, idJob) {

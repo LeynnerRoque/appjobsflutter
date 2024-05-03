@@ -30,11 +30,11 @@ class JobService {
   }
 
   Future<http.Response> listAll() {
-    return http.get(Uri.parse(url + 'api/all'));
+    return http.get(Uri.parse(url + 'all'));
   }
 
   Future<http.Response> findOne(title) {
-    return http.get(Uri.parse(url + 'api/findTitle/' + title));
+    return http.get(Uri.parse(url + 'findTitle/' + title));
   }
 
   Future<http.Response> findJobOnEnterprise(foundationName) {
@@ -43,7 +43,7 @@ class JobService {
   }
 
     Future<http.Response> findById(id) {
-    return http.get(Uri.parse(url + id));
+    return http.get(Uri.parse(url + 'findOne/'+id));
   }
 }
 

@@ -1,6 +1,36 @@
+import 'package:appjobsflutter/home/lists/all-enterprises.dart';
+import 'package:appjobsflutter/home/lists/all-jobs.dart';
+import 'package:appjobsflutter/home/lists/all-locations.dart';
+import 'package:appjobsflutter/home/lists/all-peoples.dart';
 import 'package:flutter/material.dart';
 
 class RowHeaderComponent extends StatelessWidget {
+
+ goToEnterpriseAll(BuildContext context) {
+    Navigator.pop(context);
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => AllEntreprises()));
+  }
+
+  goToLocationAll(BuildContext context) {
+    Navigator.pop(context);
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => LocationsAll()));
+  }
+
+  goToPeoplesAll(BuildContext context) {
+    Navigator.pop(context);
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => AllPeoples()));
+  }
+
+goToJobsAll(BuildContext context) {
+    Navigator.pop(context);
+    Navigator.push(context, MaterialPageRoute(builder: (context) => AllJobs()));
+  }
+ 
+
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -35,6 +65,9 @@ class RowHeaderComponent extends StatelessWidget {
                       ),
                     ),
                   ),
+                  onTap: (){
+                    goToEnterpriseAll(context);
+                  },
                 ),
               ),
               Padding(
@@ -57,6 +90,9 @@ class RowHeaderComponent extends StatelessWidget {
                       ),
                     ),
                   ),
+                  onTap: (){
+                    goToJobsAll(context);
+                  },
                 ),
               ),
               Padding(
@@ -82,6 +118,9 @@ class RowHeaderComponent extends StatelessWidget {
                       ),
                     ),
                   ),
+                  onTap: (){
+                    goToLocationAll(context);
+                  },
                 ),
               ),
               Padding(
@@ -109,6 +148,9 @@ class RowHeaderComponent extends StatelessWidget {
                       ),
                     ),
                   ),
+                  onTap: (){
+                    goToPeoplesAll(context);
+                  },
                 ),
               )
             ],

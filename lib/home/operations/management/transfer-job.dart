@@ -40,10 +40,11 @@ class _TransferJobPageState extends State<TransferJobPage> {
     if (response.statusCode == 200) {
       var json = convert.jsonDecode(response.body);
       json as Map<String, dynamic>;
+      var resposta = People.fromJson(json);
       setState(() {
         showSearchReturn = true;
       });
-      return People.fromJson(json);
+      return resposta;
     } else {
       throw Exception('Failed on load data');
     }
@@ -75,7 +76,7 @@ class _TransferJobPageState extends State<TransferJobPage> {
                 radius: 30,
               ),
               title: Text(views.name),
-              subtitle: Text(" - Job Code: " + views.job.toString()),
+              subtitle: Text("Job Code: " + views.job.toString()),
               onTap: () {
                 //openDialogDetails(e);
               },
@@ -128,17 +129,36 @@ class _TransferJobPageState extends State<TransferJobPage> {
         });
   }
 
+
+    openCallsDialogError(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return SucessInfoAlert(
+            labelText: 'view all',
+            onPressed: () {
+              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => PeoplesOnJobsPage()));
+            },
+            title: "Transfer Item Fail",
+            message: "Error item transfer",
+          );
+        });
+  }
+
   transferJob() async {
     var idPeopleOrigin = int.parse(idPeopleSearch.text);
     var idJobDestiny = int.parse(idJob.text);
-    TransferNewJob newJob = new TransferNewJob(
-      idPeople: idPeopleOrigin, 
-      idNewJob: idJobDestiny);
+    TransferNewJob newJob =
+        new TransferNewJob(idPeople: idPeopleOrigin, idNewJob: idJobDestiny);
     var response = await peopleService.changeJob(newJob.toJson());
     if (response.statusCode == 200) {
       openCallsDialogSucess(context);
     } else {
-      print(response.statusCode);
+      if (response.statusCode == 404) {
+        openCallsDialogError(context);
+      }
     }
   }
 
@@ -189,6 +209,9 @@ class _TransferJobPageState extends State<TransferJobPage> {
             ),
             Divider(
               color: Colors.blue,
+            ),
+            SizedBox(
+              height: 20,
             ),
             Row(
               children: [

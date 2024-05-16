@@ -38,12 +38,16 @@ class JobService {
   }
 
   Future<http.Response> findJobOnEnterprise(foundationName) {
-    return http
-        .get(Uri.parse(url + 'filterByNameFoundation/' + foundationName.toString()));
+    return http.get(
+        Uri.parse(url + 'filterByNameFoundation/' + foundationName.toString()));
   }
 
-    Future<http.Response> findById(id) {
-    return http.get(Uri.parse(url + 'findOne/'+id));
+  Future<http.Response> findById(id) {
+    return http.get(Uri.parse(url + 'findOne/' + id));
+  }
+
+  Future<http.Response> findJobVisualizer(title) {
+    return http.get(Uri.parse(url + 'filterVisualizers/' + title));
   }
 }
 

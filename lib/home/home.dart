@@ -5,6 +5,8 @@ import 'package:appjobsflutter/home/lists/all-enterprises.dart';
 import 'package:appjobsflutter/home/lists/all-jobs.dart';
 import 'package:appjobsflutter/home/lists/all-locations.dart';
 import 'package:appjobsflutter/home/lists/all-peoples.dart';
+import 'package:appjobsflutter/home/operations/management/about.dart';
+import 'package:appjobsflutter/home/operations/management/report.dart';
 import 'package:appjobsflutter/home/operations/management/transfer-job.dart';
 import 'package:appjobsflutter/home/operations/reports/jobs-on-enterprise-report.dart';
 import 'package:appjobsflutter/home/operations/reports/peoples-on-job-report.dart';
@@ -82,6 +84,16 @@ class _HomePageState extends State<HomePage> {
   goToTransferJob() {
     Navigator.push(context,
         MaterialPageRoute(builder: (context) => TransferJobPage(idPeople: 0,)));
+  }
+
+    goToReportDescrible() {
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => ReportDescriblePage()));
+  }
+
+  goToAboutPage() {
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => AboutPage()));
   }
 
   @override
@@ -211,15 +223,19 @@ class _HomePageState extends State<HomePage> {
                               RowComponent(
                                   label: "Transfer",
                                   label2: "Files",
-                                  label3: "General",
+                                  label3: "About",
                                   icon: Icon(Icons.repeat_on),
                                   icon2: Icon(Icons.file_copy),
-                                  icon3: Icon(Icons.tab_unselected),
+                                  icon3: Icon(Icons.info_outline),
                                   onpressed1: () {
                                     goToTransferJob();
                                   },
-                                  onpressed2: () {},
-                                  onpressed3: () {})
+                                  onpressed2: () {
+                                    goToReportDescrible();
+                                  },
+                                  onpressed3: () {
+                                    goToAboutPage();
+                                  })
                             ],
                           ),
                         ),

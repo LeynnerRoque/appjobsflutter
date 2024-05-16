@@ -74,7 +74,7 @@ class _SearchPeoplePageState extends State<SearchPeoplePage> {
                     flex: 12,
                     child: FieldComponent(
                         controller: searchController,
-                        labelText: "Busca",
+                        labelText: "Enter Name",
                         icon: Icon(Icons.search),
                         obscureText: false,
                         tipoEntrada: TextInputType.text)),

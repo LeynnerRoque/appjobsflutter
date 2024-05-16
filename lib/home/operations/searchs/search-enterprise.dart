@@ -75,7 +75,7 @@ class _SearchEnterprisePage extends State<SearchEnterprisePage> {
                     flex: 12,
                     child: FieldComponent(
                         controller: searchController,
-                        labelText: "Busca",
+                        labelText: "Enter Foundation Name",
                         icon: Icon(Icons.search),
                         obscureText: false,
                         tipoEntrada: TextInputType.text)),

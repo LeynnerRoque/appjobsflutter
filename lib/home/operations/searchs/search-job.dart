@@ -74,7 +74,7 @@ class _SearchJobPageState extends State<SearchJobPage> {
                     flex: 12,
                     child: FieldComponent(
                         controller: searchController,
-                        labelText: "Busca",
+                        labelText: "Enter title Job",
                         icon: Icon(Icons.search),
                         obscureText: false,
                         tipoEntrada: TextInputType.text)),

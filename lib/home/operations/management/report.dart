@@ -1,53 +1,73 @@
 import 'package:appjobsflutter/components/circle-button-component.dart';
 import 'package:appjobsflutter/components/field-component.dart';
+import 'package:appjobsflutter/models/reports/report-visualizer.dart';
+import 'package:appjobsflutter/service/report-service.dart';
 import 'package:flutter/material.dart';
-import 'package:appjobsflutter/models/job.dart';
-import 'package:appjobsflutter/service/job-service.dart';
 import 'dart:convert' as convert;
 
-class JobsOnEnterprisePage extends StatefulWidget {
+class ReportDescriblePage extends StatefulWidget {
   @override
-  _JobsOnEnterprisePageState createState() => _JobsOnEnterprisePageState();
+  _ReportDescriblePageState createState() => _ReportDescriblePageState();
 }
 
-class _JobsOnEnterprisePageState extends State<JobsOnEnterprisePage> {
+class _ReportDescriblePageState extends State<ReportDescriblePage> {
   final searchController = TextEditingController();
   bool showSearchReturn = false;
   bool notResult = false;
 
-  Future<List<Job>> getAll() async {
-    var response = await jobService.findJobOnEnterprise(searchController.text);
+  Future<List<ReportVisualizer>> composeReport() async {
+    var response = await reportService.reportVisualizer(searchController.text);
     if (response.statusCode == 200) {
       var json = convert.jsonDecode(response.body);
       json as List;
       setState(() {
         showSearchReturn = true;
       });
-      return json.map((e) => Job.fromJson(e)).toList();
+      return json.map((e) => ReportVisualizer.fromJson(e)).toList();
     } else {
       throw Exception('Failed on load data');
     }
   }
 
-  FutureBuilder<List<Job>> viewAll() {
+  FutureBuilder<List<ReportVisualizer>> viewAll() {
     return FutureBuilder(
-        future: getAll(),
+        future: composeReport(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            List<Job>? views = snapshot.data;
+            List<ReportVisualizer>? views = snapshot.data;
             return Column(
               children: views!
                   .map((e) => Column(
                         children: <Widget>[
                           Card(
                             child: ListTile(
-                              leading: CircleAvatar(
-                                child: Text(e.title.characters.first),
-                                radius: 30,
-                                backgroundColor: Colors.grey[200],
-                              ),
                               title: Text(e.title),
-                              subtitle: Text(e.description),
+                              subtitle: Row(
+                                children: [
+                                  Expanded(
+                                      child: ListTile(
+                                    title: CircleAvatar(
+                                      child: Text(e.mans.toString()),
+                                      radius: 30,
+                                      backgroundColor: Colors.grey[200],
+                                    ),
+                                    subtitle: Center(
+                                      child: Text("Mans"),
+                                    ),
+                                  )),
+                                  Expanded(
+                                      child: ListTile(
+                                    title: CircleAvatar(
+                                      child: Text(e.mans.toString()),
+                                      radius: 30,
+                                      backgroundColor: Colors.grey[200],
+                                    ),
+                                    subtitle: Center(
+                                      child: Text("Womans"),
+                                    ),
+                                  ))
+                                ],
+                              ),
                               onTap: () {
                                 // openDialogDetails(e);
                               },
@@ -70,7 +90,7 @@ class _JobsOnEnterprisePageState extends State<JobsOnEnterprisePage> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          "Jobs on Enterprise",
+          "Reports Job Describle",
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Colors.blue,
@@ -92,7 +112,7 @@ class _JobsOnEnterprisePageState extends State<JobsOnEnterprisePage> {
                 Expanded(
                     flex: 3,
                     child: CircleButtonComponent(onPressed: () {
-                      getAll();
+                      composeReport();
                     }))
               ],
             ),

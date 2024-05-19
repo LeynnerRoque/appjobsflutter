@@ -50,10 +50,7 @@ class _AboutPageState extends State<AboutPage> {
                     ListTile(
                       leading: CircleAvatar(
                         radius: 24,
-                        child: Icon(
-                          Icons.code,
-                          color: Colors.deepPurple[400],
-                        ),
+                        child: new Image(image: new AssetImage("images/code.png")),
                       ),
                       title: Text(
                         "Access the code appjobs flutter for study",
@@ -72,10 +69,7 @@ class _AboutPageState extends State<AboutPage> {
                     ListTile(
                       leading: CircleAvatar(
                         radius: 24,
-                        child: Icon(
-                          Icons.code,
-                          color: Colors.deepPurple[400],
-                        ),
+                        child: new Image(image: new AssetImage("images/code.png")),
                       ),
                       title: Text("Access the code appjobs API for study",
                           maxLines: 8, textAlign: TextAlign.justify),
@@ -91,18 +85,33 @@ class _AboutPageState extends State<AboutPage> {
                     ListTile(
                       leading: CircleAvatar(
                         radius: 24,
-                        child: Icon(
-                          Icons.code,
-                          color: Colors.deepPurple[400],
-                        ),
+                        child: new Image(image: new AssetImage("images/github.png")),
                       ),
-                      title: Text("Access developer GIT profile",
+                      title: Text("Access GIT profile",
+                          maxLines: 8, textAlign: TextAlign.justify),
+                    )
+                  ],
+                ),
+              ),
+            ),
+
+             Center(
+              child: Card(
+                child: Column(
+                  children: [
+                    ListTile(
+                      leading: CircleAvatar(
+                        radius: 24,
+                        child: new Image(image: new AssetImage("images/linkedin.png")),
+                      ),
+                      title: Text("Access Linkedin profile",
                           maxLines: 8, textAlign: TextAlign.justify),
                     )
                   ],
                 ),
               ),
             )
+
           ])),
     );
   }

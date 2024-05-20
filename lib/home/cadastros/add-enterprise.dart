@@ -10,18 +10,17 @@ import 'package:flutter/material.dart';
 
 class EnterpriseAdd extends StatefulWidget {
   final int id;
-final String foundationName;
-final String email;
-final String phoneNumber;
+  final String foundationName;
+  final String email;
+  final String phoneNumber;
 
-EnterpriseAdd({
-  Key? key,
-  required this.id,
-  required this.foundationName,
-  required this.email,
-  required this.phoneNumber,
-}) : super(key: key);
-
+  EnterpriseAdd({
+    Key? key,
+    required this.id,
+    required this.foundationName,
+    required this.email,
+    required this.phoneNumber,
+  }) : super(key: key);
 
   @override
   _EnterpriseAddState createState() => _EnterpriseAddState();
@@ -31,9 +30,6 @@ class _EnterpriseAddState extends State<EnterpriseAdd> {
   final foundationName = TextEditingController();
   final email = TextEditingController();
   final phone = TextEditingController();
-
-  //todo
-  //Validations
 
   clean() {
     foundationName.clear();
@@ -61,6 +57,21 @@ class _EnterpriseAddState extends State<EnterpriseAdd> {
         });
   }
 
+  openErrorSave(message) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return SucessInfoAlert(
+            labelText: 'view all',
+            onPressed: () {
+              goToViewAll();
+            },
+            title: "Error on Save",
+            message: "Error on save the item" + message,
+          );
+        });
+  }
+
   add() async {
     try {
       Enterprises enterprises = new Enterprises(
@@ -72,11 +83,9 @@ class _EnterpriseAddState extends State<EnterpriseAdd> {
       openCallsDialogSucess(context);
       clean();
     } on HttpException catch (e) {
-      print(e.uri);
-      //dialog erro
+      openErrorSave(e.message);
     }
   }
-
 
   update() async {
     try {
@@ -89,14 +98,38 @@ class _EnterpriseAddState extends State<EnterpriseAdd> {
       openCallsDialogSucess(context);
       clean();
     } on HttpException catch (e) {
-      print(e.uri);
-      //dialog erro
+      openErrorSave(e.message);
+    }
+  }
+
+  validateForms() {
+    if (foundationName.text.isEmpty &&
+        email.text.isEmpty &&
+        phone.text.isEmpty) {
+      return showDialog(
+          context: context,
+          builder: (context) {
+            return SucessInfoAlert(
+              labelText: 'view all',
+              onPressed: () {
+                goToViewAll();
+              },
+              title: "Validate Error",
+              message: "All Fields is Empty",
+            );
+          });
+    } else {
+      if (widget.id != 0) {
+        update();
+      } else {
+        add();
+      }
     }
   }
 
   @override
   void initState() {
-    if(widget.id != 0){
+    if (widget.id != 0) {
       foundationName.text = widget.foundationName;
       email.text = widget.email;
       phone.text = widget.phoneNumber;
@@ -154,30 +187,30 @@ class _EnterpriseAddState extends State<EnterpriseAdd> {
                         height: 10,
                       ),
                       ButtonIconComponent(
-                          texto: "salvar",
-                          icon: Icon(
-                            Icons.check,
-                            color: Colors.white,
-                          ),
-                          onPressed: () {
-                            if(widget.id != 0){
-                              update();
-                            }else{
-                              add();
-                            }
-                          }),
+                        texto: "salvar",
+                        icon: Icon(
+                          Icons.check,
+                          color: Colors.white,
+                        ),
+                        onPressed: () {
+                          validateForms();
+                        },
+                        color: Colors.blue,
+                      ),
                       SizedBox(
                         height: 10,
                       ),
                       ButtonIconComponent(
-                          texto: "limpar",
-                          icon: Icon(
-                            Icons.cleaning_services,
-                            color: Colors.white,
-                          ),
-                          onPressed: () {
-                            clean();
-                          })
+                        texto: "limpar",
+                        icon: Icon(
+                          Icons.cleaning_services,
+                          color: Colors.white,
+                        ),
+                        onPressed: () {
+                          clean();
+                        },
+                        color: Colors.orange,
+                      )
                     ],
                   ),
                 ),

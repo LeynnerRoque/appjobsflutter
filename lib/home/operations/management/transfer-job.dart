@@ -248,7 +248,8 @@ class _TransferJobPageState extends State<TransferJobPage> {
                 ),
                 onPressed: () {
                   transferJob();
-                })
+                },
+                color: Colors.blue,)
           ])),
     );
   }

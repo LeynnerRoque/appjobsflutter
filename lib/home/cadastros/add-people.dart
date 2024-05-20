@@ -78,6 +78,21 @@ class _AddPeopleState extends State<AddPeople> {
         });
   }
 
+  openErrorSave(message) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return SucessInfoAlert(
+            labelText: 'view all',
+            onPressed: () {
+              goToViewAll();
+            },
+            title: "Error on Save",
+            message: "Error on save the item" + message,
+          );
+        });
+  }
+
   add() async {
     try {
       People people = new People(
@@ -94,7 +109,7 @@ class _AddPeopleState extends State<AddPeople> {
       openCallsDialogSucess(context);
       clean();
     } on HttpException catch (e) {
-      print(e.message);
+      openErrorSave(e.message);
     }
   }
 
@@ -114,7 +129,37 @@ class _AddPeopleState extends State<AddPeople> {
       openCallsDialogSucess(context);
       clean();
     } on HttpException catch (e) {
-      print(e.message);
+      openErrorSave(e.message);
+    }
+  }
+
+  validateForm() {
+    if (name.text.isEmpty &&
+        gender.text.isEmpty &&
+        age.text.isEmpty &&
+        regionName.text.isEmpty &&
+        email.text.isEmpty &&
+        phone.text.isEmpty &&
+        job.text.isEmpty &&
+        location.text.isEmpty) {
+      return showDialog(
+          context: context,
+          builder: (context) {
+            return SucessInfoAlert(
+              labelText: 'view all',
+              onPressed: () {
+                goToViewAll();
+              },
+              title: "Validate Error",
+              message: "All Fields is Empty",
+            );
+          });
+    } else {
+      if (widget.id != 0) {
+        update();
+      } else {
+        add();
+      }
     }
   }
 
@@ -228,30 +273,30 @@ class _AddPeopleState extends State<AddPeople> {
                       height: 10,
                     ),
                     ButtonIconComponent(
-                        texto: "salvar",
-                        icon: Icon(
-                          Icons.check,
-                          color: Colors.white,
-                        ),
-                        onPressed: () {
-                          if (widget.id != 0) {
-                            update();
-                          } else {
-                            add();
-                          }
-                        }),
+                      texto: "salvar",
+                      icon: Icon(
+                        Icons.check,
+                        color: Colors.white,
+                      ),
+                      onPressed: () {
+                        validateForm();
+                      },
+                      color: Colors.blue,
+                    ),
                     SizedBox(
                       height: 10,
                     ),
                     ButtonIconComponent(
-                        texto: "limpar",
-                        icon: Icon(
-                          Icons.cleaning_services,
-                          color: Colors.white,
-                        ),
-                        onPressed: () {
-                          clean();
-                        })
+                      texto: "limpar",
+                      icon: Icon(
+                        Icons.cleaning_services,
+                        color: Colors.white,
+                      ),
+                      onPressed: () {
+                        clean();
+                      },
+                      color: Colors.orange,
+                    )
                   ],
                 ),
               ),

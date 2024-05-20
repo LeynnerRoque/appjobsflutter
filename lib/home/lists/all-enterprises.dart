@@ -13,73 +13,80 @@ class AllEntreprises extends StatefulWidget {
 class _AllEntreprisesState extends State<AllEntreprises> {
   goToAdd() {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => EnterpriseAdd(
-          id: 0,
-          foundationName: "",
-          email: "",
-          phoneNumber: "",
-        )));
+        context,
+        MaterialPageRoute(
+            builder: (context) => EnterpriseAdd(
+                  id: 0,
+                  foundationName: "",
+                  email: "",
+                  phoneNumber: "",
+                )));
   }
 
-  gotoEdit(item){
+  gotoEdit(item) {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => EnterpriseAdd(
-          id: item.id,
-          foundationName: item.foundationName,
-          email: item.email,
-          phoneNumber: item.phoneNumber,
-        )));
+        context,
+        MaterialPageRoute(
+            builder: (context) => EnterpriseAdd(
+                  id: item.id,
+                  foundationName: item.foundationName,
+                  email: item.email,
+                  phoneNumber: item.phoneNumber,
+                )));
   }
 
-  removeItem(id){
+  removeItem(id) {
     enterpriseService.deleteEnterprise(id);
   }
 
-  openSuccessRemove(){
+  openSuccessRemove() {
     return showDialog(
-      context: context, 
-      builder: (builder){
-        return SucessInfoAlert(
-          labelText: "ok", 
-          onPressed: (){
-            Navigator.pop(context);
-          }, 
-          title: "Delete Item", 
-          message: "Success item remove");
-      });
+        context: context,
+        builder: (builder) {
+          return SucessInfoAlert(
+              labelText: "ok",
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              title: "Delete Item",
+              message: "Success item remove");
+        });
   }
 
-
-  openRemoveItem(id){
+  openRemoveItem(id) {
     return showDialog(
-      context: context, 
-      builder: (builder){
-        return AlertDialog(
-          title: Text('Remove Enterprises', style: TextStyle(color: Colors.blue),),
-          backgroundColor: Colors.white,
-          content: Container(
-            height: 200,
-            child: Center(
-              child: Column(
-                children: [
-                  Text('Remover Enterprise?')
-                ],
+        context: context,
+        builder: (builder) {
+          return AlertDialog(
+            title: Text(
+              'Remove Enterprises',
+              style: TextStyle(color: Colors.blue),
+            ),
+            backgroundColor: Colors.white,
+            content: Container(
+              height: 200,
+              child: Center(
+                child: Column(
+                  children: [Text('Remover Enterprise?')],
+                ),
               ),
             ),
-          ),
-          actions: [
-            TextButton(onPressed: (){
-              removeItem(id);
-              Navigator.of(context).pop();
-              openSuccessRemove();
-            }, child: Text('Sim')),
-
-            TextButton(onPressed: (){
-               Navigator.of(context).pop();
-            }, child: Text('Não'))
-          ],
-        );
-      });
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    removeItem(id);
+                    Navigator.of(context).pop();
+                    openSuccessRemove();
+                  },
+                  child: Text('Sim')),
+              TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('Não'))
+            ],
+          );
+        });
   }
 
   openDialogDetails(item) {
@@ -88,40 +95,54 @@ class _AllEntreprisesState extends State<AllEntreprises> {
         builder: (builder) {
           return AlertDialog(
             backgroundColor: Colors.white,
-            title: Center(child: Text('Details',style: TextStyle(color: Colors.blue,),)),
+            title: Center(
+                child: Text(
+              'Details',
+              style: TextStyle(
+                color: Colors.blue,
+              ),
+            )),
             content: Container(
                 height: 200,
                 child: Center(
-              child: Column(
-                children: [
-                  CircleAvatar(
-                    child: Text(item.foundationName.toString().characters.first),
-                    radius: 50,
-                  ),
-                  Text(item.foundationName),
-                  Text(item.email+"/"+item.phoneNumber, 
-                  style: TextStyle(color: Colors.grey[400], fontSize: 12),),
-                  SizedBox(height: 4,),
-                   Row(
-                    children: [
-                      IconButton(onPressed: (){}, icon: Icon(Icons.favorite_outline)),
-                      IconButton(onPressed: (){
-                        gotoEdit(item);
-                      }, icon: Icon(Icons.edit)),
-                      IconButton(onPressed: (){
-                        openRemoveItem(item.id);
-                      }, icon: Icon(Icons.delete)),
-                      IconButton(onPressed: (){}, icon: Icon(Icons.check)),
-                      IconButton(onPressed: (){}, icon: Icon(Icons.work)),
-                    ],
-                  ),
-                  
+                  child: Column(children: [
+                    CircleAvatar(
+                      child:
+                          Text(item.foundationName.toString().characters.first),
+                      radius: 50,
+                    ),
+                    Text(item.foundationName),
+                    Text(
+                      item.email + "/" + item.phoneNumber,
+                      style: TextStyle(color: Colors.grey[400], fontSize: 12),
+                    ),
+                    SizedBox(
+                      height: 4,
+                    ),
+                    Row(
+                      children: [
+                        IconButton(
+                            onPressed: () {},
+                            icon: Icon(Icons.favorite_outline)),
+                        IconButton(
+                            onPressed: () {
+                              gotoEdit(item);
+                            },
+                            icon: Icon(Icons.edit)),
+                        IconButton(
+                            onPressed: () {
+                              openRemoveItem(item.id);
+                            },
+                            icon: Icon(Icons.delete)),
+                        IconButton(onPressed: () {}, icon: Icon(Icons.check)),
+                        IconButton(onPressed: () {}, icon: Icon(Icons.work)),
+                      ],
+                    ),
                   ]),
-            )),
+                )),
           );
         });
   }
-
 
   Future<List<Enterprises>> getAll() async {
     var response = await enterpriseService.listEnterprises();

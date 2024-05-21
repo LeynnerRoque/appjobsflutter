@@ -13,7 +13,9 @@ class AllJobs extends StatefulWidget {
 class _AllJobsState extends State<AllJobs> {
   goToAdd() {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => HomePage()));
+        context, MaterialPageRoute(builder: (context) => JobAdd(
+          id: 0,title: '',description: '',salary: 0,enterprise: 0,
+        )));
   }
 
   goToUpdate(item) {

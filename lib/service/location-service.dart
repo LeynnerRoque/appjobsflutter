@@ -2,7 +2,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class LocationService{
-  final url = 'http://192.168.68.30:8080/location/';
+  final url = 'http://xxx.xxx.xx.xx:8080/location/';
 
     Future<http.Response> add(data){
     return http.post(Uri.parse(url+'add'),

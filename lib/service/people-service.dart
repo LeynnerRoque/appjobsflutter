@@ -2,7 +2,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class PeopleService {
-  final url = 'http://192.168.68.30:8080/people/';
+  final url = 'http://xxx.xxx.xx.xx:8080/people/';
 
   Future<http.Response> add(data) {
     return http.post(Uri.parse(url + 'add'),

@@ -7,25 +7,21 @@ import 'package:flutter/material.dart';
 class RowHeaderComponent extends StatelessWidget {
 
  goToEnterpriseAll(BuildContext context) {
-    Navigator.pop(context);
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => AllEntreprises()));
   }
 
   goToLocationAll(BuildContext context) {
-    Navigator.pop(context);
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => LocationsAll()));
   }
 
   goToPeoplesAll(BuildContext context) {
-    Navigator.pop(context);
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => AllPeoples()));
   }
 
 goToJobsAll(BuildContext context) {
-    Navigator.pop(context);
     Navigator.push(context, MaterialPageRoute(builder: (context) => AllJobs()));
   }
  

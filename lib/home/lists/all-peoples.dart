@@ -157,6 +157,7 @@ goToUpdate(item) {
         ),
         backgroundColor: Colors.blue,
         iconTheme: IconThemeData(color: Colors.white),
+        centerTitle: true,
       ),
       body:SingleChildScrollView(
           padding: EdgeInsets.all(10),

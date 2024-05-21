@@ -115,6 +115,7 @@ class _LocationsAllState extends State<LocationsAll> {
         ),
         backgroundColor: Colors.blue,
         iconTheme: IconThemeData(color: Colors.white),
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
           padding: EdgeInsets.all(10),

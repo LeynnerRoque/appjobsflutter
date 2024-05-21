@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AboutPage extends StatefulWidget {
   @override
@@ -6,6 +7,47 @@ class AboutPage extends StatefulWidget {
 }
 
 class _AboutPageState extends State<AboutPage> {
+
+
+openGitProfile() async{
+  const url = 'https://github.com/LeynnerRoque/';
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
+    } else {
+      throw 'Could not launch $url';
+    }
+}
+
+openLinkedinProfile() async{
+  const url = 'https://br.linkedin.com › leynner-roque-59994847';
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
+    } else {
+      throw 'Could not launch $url';
+    }
+}
+
+
+openAPIGit() async{
+  const url = 'https://github.com/LeynnerRoque/appjobsapi';
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
+    } else {
+      throw 'Could not launch $url';
+    }
+}
+
+
+openAPPGit() async{
+  const url = 'https://github.com/LeynnerRoque/appjobsflutter';
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
+    } else {
+      throw 'Could not launch $url';
+    }
+}
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,6 +99,9 @@ class _AboutPageState extends State<AboutPage> {
                         maxLines: 8,
                         textAlign: TextAlign.justify,
                       ),
+                      onTap: (){
+                        openAPPGit();
+                      },
                     )
                   ],
                 ),
@@ -73,6 +118,9 @@ class _AboutPageState extends State<AboutPage> {
                       ),
                       title: Text("Access the code appjobs API for study",
                           maxLines: 8, textAlign: TextAlign.justify),
+                          onTap: () {
+                            openAPIGit();
+                          },
                     )
                   ],
                 ),
@@ -89,6 +137,9 @@ class _AboutPageState extends State<AboutPage> {
                       ),
                       title: Text("Access GIT profile",
                           maxLines: 8, textAlign: TextAlign.justify),
+                          onTap: (){
+                            openGitProfile();
+                          },
                     )
                   ],
                 ),
@@ -106,6 +157,9 @@ class _AboutPageState extends State<AboutPage> {
                       ),
                       title: Text("Access Linkedin profile",
                           maxLines: 8, textAlign: TextAlign.justify),
+                          onTap: (){
+                            openLinkedinProfile();
+                          },
                     )
                   ],
                 ),

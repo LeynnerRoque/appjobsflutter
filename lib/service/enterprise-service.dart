@@ -3,7 +3,7 @@ import 'dart:convert';
 
 class EnterprisesService{
 
-  final url = 'http://192.168.68.30:8080/enterprise/';
+  final url = 'http://xxx.xxx.xx.xx:8080/enterprise/';
 
   Future<http.Response> addEnterprise(data){
     return http.post(Uri.parse(url+'add'),

@@ -5,7 +5,7 @@ class JobService {
   final url = 'http://xxx.xxx.xx.xx:8080/job/';
 
   Future<http.Response> add(data) {
-    return http.post(Uri.parse(url + 'api/add'),
+    return http.post(Uri.parse(url + 'add'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -13,7 +13,7 @@ class JobService {
   }
 
   Future<http.Response> update(data) {
-    return http.put(Uri.parse(url + 'api/up'),
+    return http.put(Uri.parse(url + 'up'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },

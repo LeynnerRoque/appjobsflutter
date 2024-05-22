@@ -50,7 +50,7 @@ class PeopleService {
   }
 
   Future<http.Response> changeJob(data) {
-    return http.put(Uri.parse(url +'changeJob/'), 
+    return http.put(Uri.parse(url +'changeJob'), 
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
